@@ -29,7 +29,7 @@ const GlobalStyle = () => (
         font-weight: 300;
       }
 
-      // input 숫자 화살표 삭제
+      /* input 숫자 화살표 삭제 */
       /* Chrome, Safari, Edge, Opera */
       input::-webkit-outer-spin-button,
       input::-webkit-inner-spin-button {

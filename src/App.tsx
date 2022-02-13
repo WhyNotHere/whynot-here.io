@@ -1,9 +1,10 @@
-const App = () => {
-  return (
-    <>
-      <h1>hello whynot-here</h1>
-    </>
-  );
-};
+import { BrowserRouter } from 'react-router-dom';
+import AppRouter from './AppRouter';
+
+const App = () => (
+  <BrowserRouter>
+    <AppRouter />
+  </BrowserRouter>
+);
 
 export default App;

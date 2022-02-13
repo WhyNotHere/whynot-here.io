@@ -1,12 +1,14 @@
-import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
+import { ThemeProvider } from '@emotion/react';
+
 import App from './App';
+import theme from './theme';
 import GlobalStyle from './GlobalStyle';
 
 ReactDOM.render(
-  <StrictMode>
+  <ThemeProvider theme={theme}>
     <GlobalStyle />
     <App />
-  </StrictMode>,
+  </ThemeProvider>,
   document.getElementById('root'),
 );
