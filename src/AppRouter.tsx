@@ -4,6 +4,7 @@ import PageTemplate from './PageTemplate/PageTemplate';
 import MainPage from './MainPage';
 import DetailPage from './DetailPage';
 
+// TODO: path constants에 정리
 const AppRouter = () => (
   <Routes>
     <Route element={<PageTemplate />}>

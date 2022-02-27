@@ -29,7 +29,8 @@ const Contents = () => {
     }
   };
 
-  const handleOnClick = (id) => {
+  // TODO: id type 지정
+  const handleOnClick = (id: number) => {
     navigate(`/posts/${id}`);
   };
 
