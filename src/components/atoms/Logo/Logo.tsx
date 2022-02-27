@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import { WhyNotHereHorizontalLogoImg } from '../../assets';
+import { WhyNotHereHorizontalLogoImg } from '../../../assets';
 
 interface LogoProps {
   width?: string;
