@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1rem 5rem;
-  border-bottom: 1px solid #dadada;
+  border-bottom: ${({ theme }) => `1px solid ${theme.color.divider}`};
 `;
 
 export const Temp = styled.div`
@@ -13,6 +13,7 @@ export const Temp = styled.div`
   align-items: center;
   width: 8rem;
   height: 2rem;
-  border: 1px solid #dadada;
   border-radius: 0.5rem;
+
+  border: ${({ theme }) => `1px solid ${theme.color.divider}`}; ;
 `;

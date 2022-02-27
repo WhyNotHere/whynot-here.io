@@ -5,5 +5,6 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   height: 6rem;
-  border-bottom: 1px solid #dadada; /* temporary */
+
+  border-bottom: ${({ theme }) => `1px solid ${theme.color.divider}`};
 `;
