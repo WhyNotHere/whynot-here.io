@@ -1,10 +1,16 @@
-import { Theme } from '@emotion/react';
-
-const theme: Theme = {
+export const theme = {
   color: {
     /* temporary color */
     primary: '#005B9A',
+    red: '#E9B9B9',
+    blue: '#B7CFE4',
+    yellow: '#F2E5A0',
   },
 };
 
-export default theme;
+type ThemeType = typeof theme;
+
+declare module '@emotion/react' {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface Theme extends ThemeType {}
+}
