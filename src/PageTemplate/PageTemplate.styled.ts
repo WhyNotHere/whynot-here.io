@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Container = styled.div`
-  /* temporary color */
-  background-color: #f1f1f1;
-  height: 100%;
+  // TODO: 색 어떻게 할지 고민
+  background-color: ${({ theme }) => theme.color.background};
+  min-height: 100%;
 `;

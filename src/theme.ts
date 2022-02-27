@@ -1,6 +1,7 @@
 export const theme = {
   color: {
     /* temporary color */
+    background: '#f1f1f1',
     divider: '#dadada',
     primary: '#005B9A',
     red: '#E9B9B9',

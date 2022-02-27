@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 
+// TODO: 여기를 BaseLayout으로 할지 고민
 export const Container = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr;

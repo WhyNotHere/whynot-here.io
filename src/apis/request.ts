@@ -10,3 +10,10 @@ export const getPostsAsync = async () => {
 
   return data;
 };
+
+// TODO: id 타입 지정
+export const getPostAsync = async (id: string | undefined) => {
+  const { data } = await request.get(`/v1/posts/${id}`);
+
+  return data;
+};
