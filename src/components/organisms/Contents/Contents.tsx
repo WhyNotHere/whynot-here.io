@@ -1,5 +1,6 @@
 // TODO: organisms가 맞는지 고민
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { getPostsAsync } from '../../../apis/request';
 
@@ -12,6 +13,7 @@ import testPosts from '../../../mock/posts.json';
 
 // TODO: 안에 있는 부분 컴포넌트로 분리
 const Contents = () => {
+  const navigate = useNavigate();
   // TODO: 타입 지정
   const [posts, setPosts] = useState<any[]>();
 
@@ -27,6 +29,10 @@ const Contents = () => {
     }
   };
 
+  const handleOnClick = (id) => {
+    navigate(`/posts/${id}`);
+  };
+
   useEffect(() => {
     getPosts();
   }, []);
@@ -36,7 +42,7 @@ const Contents = () => {
   return (
     <Styled.Container>
       {testPosts.map((post) => (
-        <Styled.InfoContainer key={post.id}>
+        <Styled.InfoContainer key={post.id} onClick={() => handleOnClick(post.id)}>
           <Styled.Image src={post.postImg} alt="포스트 이미지" width="100%" />
           <Styled.Title>{post.title}</Styled.Title>
           <Styled.Job>
