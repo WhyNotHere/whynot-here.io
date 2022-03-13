@@ -4,4 +4,5 @@ export const Container = styled.div`
   // TODO: 색 어떻게 할지 고민
   background-color: ${({ theme }) => theme.color.background};
   min-height: 100%;
+  min-width: 30rem;
 `;
