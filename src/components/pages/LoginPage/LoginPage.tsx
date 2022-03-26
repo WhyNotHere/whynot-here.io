@@ -1,4 +1,3 @@
-import Button from '../../atoms/Button';
 import * as Styled from './LoginPage.styled';
 
 // TODO: react-hook-form 도입? -> 소셜로 바뀌면 필요 없을수도
@@ -13,7 +12,7 @@ const LoginPage = () => {
           <Styled.Input placeholder="아이디" />
           <Styled.Input placeholder="비밀번호" type="password" />
         </Styled.LoginContainer>
-        <Button>로그인</Button>
+        <Styled.LoginButton>로그인</Styled.LoginButton>
       </Styled.SubContainer>
     </Styled.Container>
   );

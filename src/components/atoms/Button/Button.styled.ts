@@ -4,10 +4,10 @@ import { css } from '@emotion/react';
 import { ButtonType } from './Button.type';
 
 export const Container = styled.button<{ $type: ButtonType }>`
-  width: 10rem;
+  width: 100%;
   height: 3rem;
   // TODO: 다른 border-radius들 통일
-  border-radius: 0.75rem;
+  border-radius: 0.25rem;
   cursor: pointer;
 
   ${({ theme, $type }) => {

@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 import Logo from '../../atoms/Logo';
+import Button from '../../atoms/Button';
 
 export const WhyNotHereLogo = styled(Logo)`
   padding: 1rem 0;
@@ -42,10 +43,15 @@ export const Title = styled.div`
 
 export const Input = styled.input`
   width: 20rem;
-  height: 2.5rem;
+  height: 3.125rem;
   border-radius: 0.3125rem;
   margin-bottom: 1rem;
   padding: 1rem;
 
   border: 1px solid ${({ theme }) => theme.color.grey};
+`;
+
+export const LoginButton = styled(Button)`
+  width: 20rem;
+  height: 3.125rem;
 `;
