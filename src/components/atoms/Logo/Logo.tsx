@@ -7,10 +7,10 @@ interface LogoProps {
 }
 
 const Logo = (props: LogoProps) => {
-  const { width = '12rem' } = props;
+  const { width = '12rem', ...rest } = props;
 
   return (
-    <Container width={width}>
+    <Container width={width} {...rest}>
       <img src={WhyNotHereHorizontalLogoImg} alt="로고 이미지" width="100%" />
     </Container>
   );

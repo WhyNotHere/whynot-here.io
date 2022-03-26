@@ -8,9 +8,6 @@ import JobTag from '../../atoms/JobTag';
 
 import * as Styled from './Contents.styled';
 
-// 임시
-import testPosts from '../../../mock/posts.json';
-
 // TODO: 안에 있는 부분 컴포넌트로 분리
 const Contents = () => {
   const navigate = useNavigate();
@@ -30,9 +27,7 @@ const Contents = () => {
   };
 
   // TODO: id type 지정
-  const handleOnClick = (id: number) => {
-    navigate(`/posts/${id}`);
-  };
+  const onClickPost = (id: number) => navigate(`/posts/${id}`);
 
   useEffect(() => {
     getPosts();
@@ -42,17 +37,18 @@ const Contents = () => {
 
   return (
     <Styled.Container>
-      {testPosts.map((post) => (
-        <Styled.InfoContainer key={post.id} onClick={() => handleOnClick(post.id)}>
-          <Styled.Image src={post.postImg} alt="포스트 이미지" width="100%" />
-          <Styled.Title>{post.title}</Styled.Title>
-          <Styled.Job>
-            {post.jobs.map((job) => (
-              <JobTag key={job.id} job={job.name} />
-            ))}
-          </Styled.Job>
-        </Styled.InfoContainer>
-      ))}
+      {posts &&
+        posts.map((post) => (
+          <Styled.InfoContainer key={post.id} onClick={() => onClickPost(post.id)}>
+            <Styled.Image src={post.postImg} alt="포스트 이미지" width="100%" />
+            <Styled.Title>{post.title}</Styled.Title>
+            <Styled.Job>
+              {post.jobs.map((job) => (
+                <JobTag key={job.id} job={job.name} />
+              ))}
+            </Styled.Job>
+          </Styled.InfoContainer>
+        ))}
     </Styled.Container>
   );
 };
