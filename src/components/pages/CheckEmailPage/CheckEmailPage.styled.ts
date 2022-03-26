@@ -20,7 +20,7 @@ export const SubContainer = styled.div`
   width: 28.125rem;
   height: 25rem;
   border-radius: 0.25rem;
-  padding: 2rem;
+  padding: 3.75rem;
 
   background-color: ${({ theme }) => theme.color.white};
 `;
@@ -32,7 +32,7 @@ export const Title = styled.div`
 `;
 
 export const Input = styled.input`
-  width: 20rem;
+  width: 100%;
   height: 3.125rem;
   border-radius: 0.3125rem;
   padding: 1rem;
@@ -41,7 +41,6 @@ export const Input = styled.input`
 `;
 
 export const CheckingEmailButton = styled(Button)`
-  width: 20rem;
   height: 3.125rem;
   margin-top: 1rem;
 `;

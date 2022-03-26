@@ -18,11 +18,19 @@ export const SubContainer = styled.div`
   justify-content: center;
   align-items: center;
   width: 28.125rem;
-  height: 25rem;
+  height: 31.25rem;
   border-radius: 0.25rem;
   padding: 3.75rem;
 
   background-color: ${({ theme }) => theme.color.white};
+`;
+
+export const NicknameContainer = styled.div`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+  gap: 1rem;
 `;
 
 export const Title = styled.div`
@@ -36,11 +44,20 @@ export const Input = styled.input`
   height: 3.125rem;
   border-radius: 0.3125rem;
   padding: 1rem;
+  margin-bottom: 1rem;
 
   border: 1px solid ${({ theme }) => theme.color.grey};
 `;
 
-export const CheckingEmailButton = styled(Button)`
-  height: 3.125rem;
-  margin-top: 1rem;
+export const NicknameInput = styled(Input)`
+  margin-bottom: 0;
+`;
+
+export const CheckDuplicationButton = styled(Button)`
+  width: 8rem;
+`;
+
+export const RegistrationButton = styled(Button)`
+  min-height: 3.125rem;
+  margin-top: 2rem;
 `;

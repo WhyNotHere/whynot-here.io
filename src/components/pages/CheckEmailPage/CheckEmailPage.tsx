@@ -5,7 +5,7 @@ import * as Styled from './CheckEmailPage.styled';
 const CheckEmailPage = () => {
   const navigate = useNavigate();
 
-  const handleButtonClick = () => navigate('/check-authentication-code');
+  const handleButtonClick = () => navigate('/signup/check-authentication-code');
 
   return (
     <Styled.Container>

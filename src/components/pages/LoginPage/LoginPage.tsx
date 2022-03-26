@@ -16,7 +16,7 @@ const LoginPage = () => {
         <Styled.LoginButton>로그인</Styled.LoginButton>
         <Styled.SignUpContainer>
           <Styled.Text>WhyNotHere 회원이 아닌가요? </Styled.Text>
-          <Styled.SignUpLink to="/check-email">지금 가입하세요.</Styled.SignUpLink>
+          <Styled.SignUpLink to="/signup/check-email">지금 가입하세요.</Styled.SignUpLink>
         </Styled.SignUpContainer>
       </Styled.SubContainer>
     </Styled.Container>
