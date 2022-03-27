@@ -31,3 +31,15 @@ export const getCheckingAuthenticationCodeAsync = async (token: string, email: s
 
   return data;
 };
+
+export const postCheckingNicknameAsync = async (nickname: string) => {
+  const { data } = await request.post('/v1/check-nickname-duplicate', { nickname });
+
+  return data;
+};
+
+export const postSignupAsync = async (nickname: string, email: string, password: string) => {
+  const { data } = await request.post('/v1/sign-up', { nickname, email, password });
+
+  return data;
+};
