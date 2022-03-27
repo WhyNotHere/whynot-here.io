@@ -12,7 +12,7 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.color.background};
 `;
 
-export const SubContainer = styled.div`
+export const SubContainerForm = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;

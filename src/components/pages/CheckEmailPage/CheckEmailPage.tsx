@@ -28,7 +28,7 @@ const CheckEmailPage = () => {
         await postCheckingEmailAsync(email);
         alert('이메일을 발송했습니다.');
 
-        navigate('/signup/check-authentication-code');
+        navigate('/signup/check-authentication-code', { state: { tmpEmail: email } });
       } catch (error) {
         alert('이미 가입한 이메일입니다.');
       }

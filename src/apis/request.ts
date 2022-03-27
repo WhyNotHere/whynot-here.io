@@ -25,3 +25,9 @@ export const postCheckingEmailAsync = async (email: string) => {
 
   return data;
 };
+
+export const getCheckingAuthenticationCodeAsync = async (token: string, email: string) => {
+  const { data } = await request.get(`/v1/check-email-token?token=${token}&email=${email}`);
+
+  return data;
+};
