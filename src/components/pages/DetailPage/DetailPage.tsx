@@ -38,7 +38,7 @@ const DetailPage = () => {
         <Styled.SubContainer>
           <Styled.Title>{post.title}</Styled.Title>
           <Styled.PostInfoContainer>
-            <Styled.Writer>{post.owner.nickname}</Styled.Writer>
+            <Styled.Writer>{post.writer.nickname}</Styled.Writer>
             <Styled.Date>{parseDate(post.createdDt)}</Styled.Date>
           </Styled.PostInfoContainer>
           <Styled.ProjectImage src={post.postImg} alt="포스트 이미지" />

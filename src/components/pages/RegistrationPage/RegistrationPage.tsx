@@ -89,7 +89,7 @@ const RegistrationPage = () => {
 
   return (
     <Styled.Container>
-      <Styled.SubContainer onSubmit={handleRegistrationSubmit}>
+      <Styled.SubContainer accept-charset="UTF-8" onSubmit={handleRegistrationSubmit}>
         <Styled.Title>회원가입</Styled.Title>
         <Styled.Input placeholder={tmpEmail} disabled />
         <Styled.NicknameContainer>

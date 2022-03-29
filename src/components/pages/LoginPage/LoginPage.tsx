@@ -10,7 +10,7 @@ const LoginPage = () => {
       <Styled.SubContainer>
         <Styled.Title>로그인</Styled.Title>
         <Styled.LoginContainer>
-          <Styled.Input placeholder="아이디" />
+          <Styled.Input placeholder="이메일 또는 닉네임" />
           <Styled.Input placeholder="비밀번호" type="password" />
         </Styled.LoginContainer>
         <Styled.LoginButton>로그인</Styled.LoginButton>
