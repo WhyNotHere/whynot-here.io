@@ -33,7 +33,7 @@ export const SubContainer = styled.div`
   background-color: ${({ theme }) => theme.color.white};
 `;
 
-export const LoginContainer = styled.div`
+export const LoginContainer = styled.form`
   display: flex;
   flex-direction: column;
 `;

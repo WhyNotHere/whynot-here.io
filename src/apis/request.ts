@@ -43,3 +43,13 @@ export const postSignupAsync = async (nickname: string, email: string, password:
 
   return data;
 };
+
+export const postLoginAsync = async (email: string, password: string) => {
+  const form = new FormData();
+  form.append('email', email);
+  form.append('password', password);
+
+  const { data } = await request.post('/login', form);
+
+  return data;
+};

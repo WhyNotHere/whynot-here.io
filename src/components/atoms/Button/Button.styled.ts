@@ -18,7 +18,10 @@ export const Container = styled.button<{ $type: ButtonType }>`
       `;
       //TODO: 아직 스타일 못 정함
     } else if ($type === 'text') {
-      return css``;
+      return css`
+        border: 1px solid ${theme.color.primary};
+        color: ${theme.color.primary};
+      `;
     }
   }}
 `;
