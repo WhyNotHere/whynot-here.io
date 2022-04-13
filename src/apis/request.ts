@@ -6,6 +6,7 @@ import axios from 'axios';
 
 export const request = axios.create({
   baseURL: `${process.env.REACT_APP_SERVER_URL}`,
+  withCredentials: true,
 });
 
 export const getPostsAsync = async () => {
