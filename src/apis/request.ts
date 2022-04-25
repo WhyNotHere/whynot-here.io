@@ -54,3 +54,22 @@ export const postLoginAsync = async (email: string, password: string) => {
 
   return data;
 };
+
+//TODO: 임시 타입
+type PostWritingAsyncTYpe = {
+  title: string;
+  content: string;
+  postImg: string;
+  jobIds: Array<string>;
+};
+
+export const postWritingAsync = async ({
+  title,
+  content,
+  postImg,
+  jobIds,
+}: PostWritingAsyncTYpe) => {
+  const { data } = await request.post('/v1/posts', { title, content, postImg, jobIds: jobIds });
+
+  return data;
+};

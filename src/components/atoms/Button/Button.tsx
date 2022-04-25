@@ -1,11 +1,13 @@
 // TODO: width, height 등 ui적인 부분을 prop으로 넘기는 것은 어색하다
+import React from 'react';
+
 import * as Styled from './Button.styled';
 import { ButtonType } from './Button.type';
 
 interface ButtonProps {
   $type?: ButtonType;
   children?: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const Button = (props: ButtonProps) => {

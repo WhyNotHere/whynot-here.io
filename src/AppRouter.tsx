@@ -7,8 +7,10 @@ import LoginPage from './components/pages/LoginPage/LoginPage';
 import CheckEmailPage from './components/pages/CheckEmailPage/CheckEmailPage';
 import CheckAuthenticationCodePage from './components/pages/CheckAuthenticationCodePage/CheckAuthenticationCodePage';
 import RegistrationPage from './components/pages/RegistrationPage/RegistrationPage';
+import WritingPage from './components/pages/WritingPage/WritingPage';
 
 // TODO: path constants에 정리
+// TODO: private 설정
 const AppRouter = () => (
   <Routes>
     <Route path="/login" element={<LoginPage />} />
@@ -20,6 +22,7 @@ const AppRouter = () => (
     <Route element={<PageTemplate />}>
       <Route path="/" element={<HomePage />} />
       <Route path="/posts/:id" element={<DetailPage />} />
+      <Route path="writing" element={<WritingPage />} />
     </Route>
   </Routes>
 );
