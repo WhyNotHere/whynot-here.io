@@ -5,6 +5,8 @@ import { postLoginAsync } from '../../../apis/request';
 
 import * as Styled from './LoginPage.styled';
 
+import tokenService from '../../../services/token.service';
+
 // TODO: react-hook-form 도입? -> 소셜로 바뀌면 필요 없을수도
 // TODO: input 컴포넌트로?
 
@@ -31,7 +33,10 @@ const LoginPage = () => {
       event.preventDefault();
 
       try {
-        await postLoginAsync(values.email, values.password);
+        const { email } = await postLoginAsync(values.email, values.password);
+
+        tokenService.setEmailToken(email);
+
         navigate('/');
       } catch (error) {
         alert('이메일 또는 닉네임, 비밀번호를 확인해 주세요.');

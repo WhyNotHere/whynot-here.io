@@ -33,8 +33,6 @@ const Contents = () => {
     getPosts();
   }, []);
 
-  console.log(posts);
-
   return (
     <Styled.Container>
       {posts &&

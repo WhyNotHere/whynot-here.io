@@ -5,7 +5,7 @@
 import axios from 'axios';
 
 export const request = axios.create({
-  baseURL: `${process.env.REACT_APP_SERVER_URL}`,
+  baseURL: 'https://whynot-here.o-r.kr/',
   withCredentials: true,
 });
 
@@ -50,7 +50,7 @@ export const postLoginAsync = async (email: string, password: string) => {
   form.append('email', email);
   form.append('password', password);
 
-  const { data } = await request.post('/login', form);
+  const { data } = await request.post('/v1/login', form);
 
   return data;
 };
