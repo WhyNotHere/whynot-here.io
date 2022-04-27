@@ -1,8 +1,8 @@
 // TODO: organisms가 맞는지 고민
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getLoginStateAsync, getPostsAsync } from '../../../apis/request';
+import { getPostsAsync } from '../../../apis/request';
 
 import JobTag from '../../atoms/JobTag';
 
@@ -16,7 +16,7 @@ const Contents = () => {
 
   // TODO: 로직 분리
   // TODO: 에러 처리
-  const getPosts = async () => {
+  const getPosts = useCallback(async () => {
     try {
       const newPosts = await getPostsAsync();
 
@@ -24,25 +24,14 @@ const Contents = () => {
     } catch (error) {
       console.error(error);
     }
-  };
-
-  const getLoginState = async () => {
-    try {
-      const loginState = await getLoginStateAsync();
-
-      console.log(loginState);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  }, []);
 
   // TODO: id type 지정
-  const onClickPost = (id: number) => navigate(`/posts/${id}`);
+  const onClickPost = useCallback((id: number) => navigate(`/posts/${id}`), [navigate]);
 
   useEffect(() => {
     getPosts();
-    getLoginState();
-  }, []);
+  }, [getPosts]);
 
   return (
     <Styled.Container>
@@ -52,7 +41,7 @@ const Contents = () => {
             <Styled.Image src={post.postImg} alt="포스트 이미지" width="100%" />
             <Styled.Title>{post.title}</Styled.Title>
             <Styled.Job>
-              {post.jobs.map((job) => (
+              {post.jobs.map((job: any) => (
                 <JobTag key={job.id} job={job.name} />
               ))}
             </Styled.Job>

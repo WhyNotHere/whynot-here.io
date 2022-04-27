@@ -15,6 +15,10 @@ export const getLoginStateAsync = async () => {
   return data;
 };
 
+export const postLogoutAsync = () => {
+  request.post('/v1/logout');
+};
+
 export const getPostsAsync = async () => {
   const { data } = await request.get('/v1/posts');
 

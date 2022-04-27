@@ -5,8 +5,6 @@ import { postLoginAsync } from '../../../apis/request';
 
 import * as Styled from './LoginPage.styled';
 
-import tokenService from '../../../services/token.service';
-
 // TODO: react-hook-form 도입? -> 소셜로 바뀌면 필요 없을수도
 // TODO: input 컴포넌트로?
 
@@ -33,9 +31,7 @@ const LoginPage = () => {
       event.preventDefault();
 
       try {
-        const { email } = await postLoginAsync(values.email, values.password);
-
-        tokenService.setEmailToken(email);
+        await postLoginAsync(values.email, values.password);
 
         navigate('/');
       } catch (error) {

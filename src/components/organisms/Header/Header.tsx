@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { getLoginStateAsync, postLogoutAsync } from '../../../apis/request';
+
 import Logo from '../../atoms/Logo';
 
 import * as Styled from './Header.styled';
-
-import tokenService from '../../../services/token.service';
 
 const Header = () => {
   const [isLogin, setLogin] = useState(false);
@@ -26,16 +26,30 @@ const Header = () => {
 
   const handleLogoutClick = useCallback(() => {
     if (confirm('로그아웃 하시겠습니까?')) {
-      tokenService.removeEmailToken();
-      setLogin(false);
+      try {
+        postLogoutAsync();
+
+        setLogin(false);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }, []);
+
+  // TODO: 훅으로 분리
+  const getLoginState = useCallback(async () => {
+    try {
+      const { login } = await getLoginStateAsync();
+
+      setLogin(login);
+    } catch (error) {
+      console.error(error);
     }
   }, []);
 
   useEffect(() => {
-    if (tokenService.getEmailToken()) {
-      setLogin(true);
-    }
-  }, [isLogin]);
+    getLoginState();
+  }, [getLoginState]);
 
   return (
     <Styled.Container>
