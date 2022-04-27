@@ -9,6 +9,12 @@ export const request = axios.create({
   withCredentials: true,
 });
 
+export const getLoginStateAsync = async () => {
+  const { data } = await request.get('/v1/account/login-state');
+
+  return data;
+};
+
 export const getPostsAsync = async () => {
   const { data } = await request.get('/v1/posts');
 

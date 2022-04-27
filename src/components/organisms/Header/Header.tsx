@@ -35,8 +35,6 @@ const Header = () => {
     if (tokenService.getEmailToken()) {
       setLogin(true);
     }
-
-    console.log('확인');
   }, [isLogin]);
 
   return (

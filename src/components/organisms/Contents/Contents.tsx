@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getPostsAsync } from '../../../apis/request';
+import { getLoginStateAsync, getPostsAsync } from '../../../apis/request';
 
 import JobTag from '../../atoms/JobTag';
 
@@ -26,11 +26,22 @@ const Contents = () => {
     }
   };
 
+  const getLoginState = async () => {
+    try {
+      const loginState = await getLoginStateAsync();
+
+      console.log(loginState);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   // TODO: id type 지정
   const onClickPost = (id: number) => navigate(`/posts/${id}`);
 
   useEffect(() => {
     getPosts();
+    getLoginState();
   }, []);
 
   return (
