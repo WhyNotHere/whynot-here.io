@@ -65,12 +65,11 @@ export const postLoginAsync = async (email: string, password: string) => {
   return data;
 };
 
-//TODO: 임시 타입
 type PostWritingAsyncTYpe = {
   title: string;
   content: string;
   postImg: string;
-  jobIds: Array<string>;
+  jobIds: Array<number>;
 };
 
 export const postWritingAsync = async ({
