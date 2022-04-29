@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getLoginStateAsync, postLogoutAsync } from '../../../apis/request';
+import { getLoginStateAsync, postLogoutAsync } from '../../apis/request';
 
-import Logo from '../../atoms/Logo';
+import Logo from '../Logo';
 
 import * as Styled from './Header.styled';
 

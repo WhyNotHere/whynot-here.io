@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-import BaseButton from '../../atoms/Button';
+import BaseButton from '../../Button';
 
 export const Container = styled.div`
   display: flex;

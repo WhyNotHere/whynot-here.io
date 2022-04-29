@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 import styled from '@emotion/styled';
 
-import Logo from '../../atoms/Logo';
-import Button from '../../atoms/Button';
+import Logo from '../../Logo';
+import Button from '../../Button';
 
 export const WhyNotHereLogo = styled(Logo)`
   padding: 1rem 0;

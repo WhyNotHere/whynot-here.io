@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { getPostAsync } from '../../../apis/request';
 
-import Button from '../../atoms/Button';
+import Button from '../../Button';
 
 import * as Styled from './DetailPage.styled';
 import { parseDate } from './DetailPage.utils';
@@ -30,7 +30,7 @@ const DetailPage = () => {
 
   useEffect(() => {
     getPost(id);
-  }, []);
+  }, [id]);
 
   return (
     <Styled.Container>

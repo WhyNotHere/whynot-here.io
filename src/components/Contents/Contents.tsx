@@ -2,9 +2,9 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getPostsAsync } from '../../../apis/request';
+import { getPostsAsync } from '../../apis/request';
 
-import JobTag from '../../atoms/JobTag';
+import JobTag from '../JobTag';
 
 import * as Styled from './Contents.styled';
 
