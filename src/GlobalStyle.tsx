@@ -18,7 +18,8 @@ const GlobalStyle = () => (
       #root {
         min-height: 100%;
         height: 100%;
-        font-family: Helvetica, Arial, sans-serif;
+        font-family: 'Roboto', 'Noto Sans KR', AppleSDGothicNeo-Regular, 'Malgun Gothic',
+          '맑은 고딕', dotum, '돋움', sans-serif;
       }
 
       li {
