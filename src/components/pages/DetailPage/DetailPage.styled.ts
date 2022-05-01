@@ -1,4 +1,10 @@
 import styled from '@emotion/styled';
+import {
+  ClockCircleOutlined,
+  DeleteOutlined,
+  LikeOutlined,
+  MessageOutlined,
+} from '@ant-design/icons';
 
 export const Container = styled.div`
   display: flex;
@@ -10,13 +16,46 @@ export const Container = styled.div`
 export const SubContainer = styled.div`
   width: 100%;
   // TODO: max-width를 여기서 말고 전체적으로 제어할 수 있으면 더 좋을듯
-  max-width: 50rem;
+  max-width: 46rem;
+`;
+
+export const PostHeaderContainer = styled.div`
+  padding: 1.5rem 0 1.375rem;
 `;
 
 export const PostInfoContainer = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  padding: 1rem 0;
+`;
+
+export const PostHeaderLeftContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
+export const PostContentLeftContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
+export const RecruitmentContainer = styled.div`
+  padding: 1.375rem 0;
+`;
+
+export const JobContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+`;
+
+export const PostContentContainer = styled.div`
+  padding: 1.375rem 0;
+`;
+
+export const IconInfoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 `;
 
 export const ButtonContainer = styled.div`
@@ -25,24 +64,86 @@ export const ButtonContainer = styled.div`
   padding: 3rem 0;
 `;
 
-export const Title = styled.div`
-  font-size: 2rem;
-  padding: 2rem 0 1rem;
+export const Title = styled.h2`
+  padding-bottom: 0.75rem;
+
+  color: ${({ theme }) => theme.color.black};
+`;
+
+export const RecruitmentTitle = styled.h4`
+  padding-bottom: 1rem;
+
+  color: ${({ theme }) => theme.color.black};
 `;
 
 export const Writer = styled.div`
-  font-size: 1.125rem;
-  font-weight: 600;
+  font-size: 0.875rem;
+  padding-bottom: 0.75rem;
+
+  color: ${({ theme }) => theme.color.black};
 `;
 
 export const Date = styled.div`
-  font-size: 1.125rem;
-  color: ${({ theme }) => theme.color.grey};
+  font-size: 0.875rem;
+  padding-top: 0.125rem;
+
+  color: ${({ theme }) => theme.color.post_info};
 `;
 
-export const Contents = styled.div``;
+export const PostHeaderComment = styled.div`
+  font-size: 0.875rem;
+  padding-top: 0.125rem;
 
-export const ProjectImage = styled.img`
+  color: ${({ theme }) => theme.color.post_info};
+`;
+
+export const PostContentComment = styled.div`
+  padding-top: 0.25rem;
+`;
+
+export const Like = styled.div`
+  padding-top: 0.25rem;
+`;
+
+export const ClockIcon = styled(ClockCircleOutlined)`
+  font-size: 0.875rem;
+
+  color: ${({ theme }) => theme.color.post_info};
+`;
+
+export const PostHeaderCommentIcon = styled(MessageOutlined)`
+  font-size: 0.875rem;
+
+  color: ${({ theme }) => theme.color.post_info};
+`;
+
+export const PostContentCommentIcon = styled(MessageOutlined)`
+  font-size: 1.125rem;
+
+  color: ${({ theme }) => theme.color.black};
+`;
+
+export const DeleteIcon = styled(DeleteOutlined)`
+  font-size: 0.875rem;
+
+  color: ${({ theme }) => theme.color.post_info};
+`;
+
+export const LikeIcon = styled(LikeOutlined)`
+  font-size: 1.125rem;
+
+  color: ${({ theme }) => theme.color.black};
+`;
+
+export const Contents = styled.div`
+  padding: 1.25rem 0;
+`;
+
+export const Image = styled.img`
   width: 100%;
-  padding: 1rem 0;
+  padding: 1.25rem 0;
+`;
+
+export const DivisionLine = styled.div`
+  border-top: 0.0625rem solid ${({ theme }) => theme.color.divider};
 `;
