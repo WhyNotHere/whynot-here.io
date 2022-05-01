@@ -15,6 +15,12 @@ export const getLoginStateAsync = async () => {
   return data;
 };
 
+export const getAccountInfoAsync = async () => {
+  const { data } = await request.get('/v1/account/info');
+
+  return data;
+};
+
 export const postLogoutAsync = () => {
   request.post('/v1/logout');
 };
@@ -65,7 +71,8 @@ export const postLoginAsync = async (email: string, password: string) => {
   return data;
 };
 
-type PostWritingAsyncTYpe = {
+// TODO: 위치 변경
+type PostWritingAsyncType = {
   title: string;
   content: string;
   postImg: string;
@@ -77,7 +84,7 @@ export const postWritingAsync = async ({
   content,
   postImg,
   jobIds,
-}: PostWritingAsyncTYpe) => {
+}: PostWritingAsyncType) => {
   const { data } = await request.post('/v1/posts', { title, content, postImg, jobIds: jobIds });
 
   return data;
