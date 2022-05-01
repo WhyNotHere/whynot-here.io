@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import useAuth from '../../../hooks/useAuth';
-import { getPostAsync } from '../../../apis/request';
+import { deletePostAsync, getPostAsync } from '../../../apis/request';
 
 import Button from '../../Button';
 import CircleTag from '../../CircleTag';
@@ -18,6 +18,7 @@ const DetailPage = () => {
   // TODO: 타입 지정
   const [post, setPost] = useState<any>();
   const { isDeletable } = useAuth({ postId: id });
+  const navigate = useNavigate();
 
   // TODO: api 호출 정리
   const getPost = useCallback(async (id: string | undefined) => {
@@ -34,9 +35,17 @@ const DetailPage = () => {
     console.log('click Apply Button');
   };
 
-  const handlePostDelete = useCallback(() => {
-    console.log('deletion');
-  }, []);
+  const handlePostDelete = useCallback(async () => {
+    try {
+      if (confirm('해당 게시물을 삭제하시겠습니까?')) {
+        await deletePostAsync(Number(id));
+
+        navigate('/');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  }, [id, navigate]);
 
   useEffect(() => {
     getPost(id);
