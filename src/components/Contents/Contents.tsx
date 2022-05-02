@@ -4,9 +4,14 @@ import { useNavigate } from 'react-router-dom';
 
 import { getPostsAsync } from '../../apis/request';
 
-import JobTag from '../JobTag';
+import CircleTag from '../CircleTag';
 
 import * as Styled from './Contents.styled';
+import * as JobMapper from '../../domains/job/job.mapper';
+
+import { parseDate } from '../utils/parseDate';
+
+import { Job } from '../../domains/job/job.type';
 
 // TODO: 안에 있는 부분 컴포넌트로 분리
 const Contents = () => {
@@ -27,7 +32,7 @@ const Contents = () => {
   }, []);
 
   // TODO: id type 지정
-  const onClickPost = useCallback((id: number) => navigate(`/posts/${id}`), [navigate]);
+  const handlePostClick = useCallback((id: number) => navigate(`/posts/${id}`), [navigate]);
 
   useEffect(() => {
     getPosts();
@@ -37,15 +42,46 @@ const Contents = () => {
     <Styled.Container>
       {posts &&
         posts.map((post) => (
-          <Styled.InfoContainer key={post.id} onClick={() => onClickPost(post.id)}>
-            <Styled.Image src={post.postImg} alt="포스트 이미지" width="100%" />
-            <Styled.Title>{post.title}</Styled.Title>
+          <Styled.InfoCard key={post.id} onClick={() => handlePostClick(post.id)}>
+            {/* <Styled.Image src={post.postImg} alt="project image" width="100%" /> */}
+            <Styled.TitleContentImageContainer>
+              <Styled.TitleContentContainer>
+                <Styled.Title>{post.title}</Styled.Title>
+                <Styled.Content>{post.content}</Styled.Content>
+              </Styled.TitleContentContainer>
+              {!!post.postImg && <Styled.Image src={post.postImg} alt="project image" />}
+            </Styled.TitleContentImageContainer>
+
             <Styled.Job>
-              {post.jobs.map((job: any) => (
-                <JobTag key={job.id} job={job.name} />
-              ))}
+              {post.jobs.map((job: Job) => {
+                const jobWithColor = JobMapper.job2JobWithColor(job);
+
+                return (
+                  <CircleTag
+                    key={jobWithColor.id}
+                    circleColor={jobWithColor.color}
+                    text={jobWithColor.name}
+                  />
+                );
+              })}
             </Styled.Job>
-          </Styled.InfoContainer>
+
+            <Styled.Writer>{post.writer.nickname}</Styled.Writer>
+
+            <Styled.InfoCardFooterContainer>
+              <Styled.FooterLeftContainer>
+                <Styled.IconContainer>
+                  <Styled.Like />
+                  <Styled.IconText>{'좋아요'}</Styled.IconText>
+                </Styled.IconContainer>
+                <Styled.IconContainer>
+                  <Styled.Comment />
+                  <Styled.IconText>{0}</Styled.IconText>
+                </Styled.IconContainer>
+              </Styled.FooterLeftContainer>
+              <Styled.IconText>{parseDate(post.createdDt)}</Styled.IconText>
+            </Styled.InfoCardFooterContainer>
+          </Styled.InfoCard>
         ))}
     </Styled.Container>
   );

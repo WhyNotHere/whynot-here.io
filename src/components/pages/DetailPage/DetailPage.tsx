@@ -8,10 +8,11 @@ import Button from '../../Button';
 import CircleTag from '../../CircleTag';
 
 import * as Styled from './DetailPage.styled';
-import { parseDate } from './DetailPage.utils';
 
 import type { Job } from '../../../domains/job/job.type';
 import * as JobMapper from '../../../domains/job/job.mapper';
+
+import { parseDate } from '../../utils/parseDate';
 
 const DetailPage = () => {
   const { id } = useParams<Record<string, string | undefined>>();

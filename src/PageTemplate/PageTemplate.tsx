@@ -7,7 +7,9 @@ import * as Styled from './PageTemplate.styled';
 const PageTemplate = () => (
   <Styled.Container>
     <Header />
-    <Outlet />
+    <Styled.SubContainer>
+      <Outlet />
+    </Styled.SubContainer>
   </Styled.Container>
 );
 
