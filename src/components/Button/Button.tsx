@@ -4,7 +4,7 @@ import React from 'react';
 import * as Styled from './Button.styled';
 import { ButtonType } from './Button.type';
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   $type?: ButtonType;
   children?: React.ReactNode;
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;

@@ -1,9 +1,15 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { postWritingAsync } from '../../../apis/request';
 
-import * as Styled from './WritingPage.styled';
+import Modal from '../../Modal';
+
+import * as Styled from './WritingModal.styled';
+
+type WritingModalProps = {
+  onHide: () => void;
+};
 
 // TODO: 이미지 임의로 넣어놓음
 const initialValues = {
@@ -14,7 +20,8 @@ const initialValues = {
   jobIds: [] as Array<number>,
 };
 
-const WritingPage = () => {
+const WritingModal = (props: WritingModalProps) => {
+  const { onHide } = props;
   const [values, setValues] = useState(initialValues);
   const [tempJobIds, setTempJobIds] = useState<Array<number>>([]);
   const navigate = useNavigate();
@@ -55,25 +62,21 @@ const WritingPage = () => {
       } catch (error) {
         alert('다시 시도해 주세요.');
       }
+      onHide();
     },
-    [values, navigate],
+    [values, navigate, onHide],
   );
 
   /* eslint-disable */
   useEffect(() => setValues({ ...values, jobIds: tempJobIds }), [tempJobIds]);
 
   return (
-    <Styled.Container>
-      <input
-        name="title"
-        value={values.title}
-        placeholder="제목을 입력해 주세요"
-        onChange={handleContents}
-      />
-      <input type="file" />
+    <Modal title="글쓰기" submitTitle="등록" onHide={onHide} onSubmit={handleWriting}>
       {/* TODO: 여기 아래를 컴포넌트로 분리 */}
       <Styled.FilterContainer>
+        <Styled.FilterTitle>모집</Styled.FilterTitle>
         <Styled.Button
+          type="button"
           $type={tempJobIds.includes(1) ? 'contained' : 'text'}
           data-id="1"
           onClick={handleFilter}
@@ -81,6 +84,7 @@ const WritingPage = () => {
           개발자
         </Styled.Button>
         <Styled.Button
+          type="button"
           $type={tempJobIds.includes(2) ? 'contained' : 'text'}
           data-id="2"
           onClick={handleFilter}
@@ -88,6 +92,7 @@ const WritingPage = () => {
           디자이너
         </Styled.Button>
         <Styled.Button
+          type="button"
           $type={tempJobIds.includes(3) ? 'contained' : 'text'}
           data-id="3"
           onClick={handleFilter}
@@ -95,6 +100,7 @@ const WritingPage = () => {
           기획자
         </Styled.Button>
         <Styled.Button
+          type="button"
           $type={tempJobIds.includes(4) ? 'contained' : 'text'}
           data-id="4"
           onClick={handleFilter}
@@ -102,13 +108,26 @@ const WritingPage = () => {
           기타
         </Styled.Button>
       </Styled.FilterContainer>
-      <Styled.TextArea name="content" value={values.content} onChange={handleContents} />
-      <Styled.SubmitContainer onSubmit={handleWriting}>
-        <Styled.Button $type="text">취소</Styled.Button>
-        <Styled.Button $type="contained">등록</Styled.Button>
-      </Styled.SubmitContainer>
-    </Styled.Container>
+      <Styled.ContentContainer>
+        <Styled.TitleInput
+          name="title"
+          value={values.title}
+          placeholder="제목을 입력해 주세요."
+          onChange={handleContents}
+        />
+        <Styled.Divider />
+        <Styled.TextArea
+          name="content"
+          value={values.content}
+          placeholder="게시글의 목적에 맞지 않는 글로 판단되는 경우 글이 숨김 처리될 수 있습니다."
+          onChange={handleContents}
+        />
+      </Styled.ContentContainer>
+      <Styled.Footer>
+        <Styled.ImageIcon />
+      </Styled.Footer>
+    </Modal>
   );
 };
 
-export default WritingPage;
+export default WritingModal;
