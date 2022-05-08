@@ -13,8 +13,13 @@ import { parseDate } from '../utils/parseDate';
 
 import { Job } from '../../domains/job/job.type';
 
+type ContentsProps = {
+  modalChanged: boolean;
+};
+
 // TODO: 안에 있는 부분 컴포넌트로 분리
-const Contents = () => {
+const Contents = (props: ContentsProps) => {
+  const { modalChanged } = props;
   const navigate = useNavigate();
   // TODO: 타입 지정
   const [posts, setPosts] = useState<any[]>();
@@ -36,7 +41,7 @@ const Contents = () => {
 
   useEffect(() => {
     getPosts();
-  }, [getPosts]);
+  }, [getPosts, modalChanged]);
 
   return (
     <Styled.Container>

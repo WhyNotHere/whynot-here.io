@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import PageTemplate from './PageTemplate/PageTemplate';
@@ -7,24 +8,29 @@ import LoginPage from './components/pages/LoginPage/LoginPage';
 import CheckEmailPage from './components/pages/CheckEmailPage/CheckEmailPage';
 import CheckAuthenticationCodePage from './components/pages/CheckAuthenticationCodePage/CheckAuthenticationCodePage';
 import RegistrationPage from './components/pages/RegistrationPage/RegistrationPage';
-import WritingPage from './components/pages/WritingPage/WritingPage';
 
 // TODO: path constants에 정리
 // TODO: private 설정
-const AppRouter = () => (
-  <Routes>
-    <Route path="/login" element={<LoginPage />} />
-    <Route path="/signup">
-      <Route path="check-email" element={<CheckEmailPage />} />
-      <Route path="check-authentication-code" element={<CheckAuthenticationCodePage />} />
-      <Route path="registration" element={<RegistrationPage />} />
-    </Route>
-    <Route element={<PageTemplate />}>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/posts/:id" element={<DetailPage />} />
-      <Route path="writing" element={<WritingPage />} />
-    </Route>
-  </Routes>
-);
+const AppRouter = () => {
+  // TODO: 더 좋은 방식 찾아보기 - 훅으로 빼기
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  return (
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/signup">
+        <Route path="check-email" element={<CheckEmailPage />} />
+        <Route path="check-authentication-code" element={<CheckAuthenticationCodePage />} />
+        <Route path="registration" element={<RegistrationPage />} />
+      </Route>
+      <Route
+        element={<PageTemplate isModalVisible={isModalVisible} setModalVisible={setModalVisible} />}
+      >
+        <Route path="/" element={<HomePage modalChanged={isModalVisible} />} />
+        <Route path="/posts/:id" element={<DetailPage />} />
+      </Route>
+    </Routes>
+  );
+};
 
 export default AppRouter;

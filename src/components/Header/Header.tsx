@@ -7,7 +7,13 @@ import Logo from '../Logo';
 
 import * as Styled from './Header.styled';
 
-const Header = () => {
+type HeaderProps = {
+  setModalVisible: (isModalVisible: boolean) => void;
+};
+
+const Header = (props: HeaderProps) => {
+  const { setModalVisible } = props;
+
   const [isLogin, setLogin] = useState(false);
   const navigate = useNavigate();
 
@@ -19,8 +25,8 @@ const Header = () => {
       return;
     }
 
-    navigate('/writing');
-  }, [isLogin, navigate]);
+    setModalVisible(true);
+  }, [isLogin, navigate, setModalVisible]);
 
   const handleLoginClick = useCallback(() => navigate('/login'), [navigate]);
 

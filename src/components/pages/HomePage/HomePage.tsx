@@ -4,11 +4,19 @@ import Filter from '../../Filter';
 
 // TODO: 구조를 이렇게 잡고 가는 게 맞는건가
 // HomePage에서는 큰 틀 잡고 들어가는데, DetailPage에서는 바로 로직 시작돼서
-const HomePage = () => (
-  <>
-    <Filter />
-    <Contents />
-  </>
-);
+type HomePageProps = {
+  modalChanged: boolean;
+};
+
+const HomePage = (props: HomePageProps) => {
+  const { modalChanged } = props;
+
+  return (
+    <>
+      <Filter />
+      <Contents modalChanged={modalChanged} />
+    </>
+  );
+};
 
 export default HomePage;
