@@ -6,16 +6,16 @@ type useAuthProps = {
   postId: string | undefined;
 };
 
-const useAuth = (props: useAuthProps): { isDeletable: boolean } => {
+const useAuth = (props: useAuthProps): { isEditable: boolean } => {
   const { postId } = props;
-  const [isDeletable, setIsDeletable] = useState(false);
+  const [isEditable, setIsEditable] = useState(false);
 
   useEffect(() => {
     compareWriterIdUserId();
   }, []);
 
   if (postId === undefined) {
-    return { isDeletable: false };
+    return { isEditable: false };
   }
 
   const getWriterId = async (postId: string) => {
@@ -42,10 +42,10 @@ const useAuth = (props: useAuthProps): { isDeletable: boolean } => {
     const userId = await getUserId();
     const writerId = await getWriterId(postId);
 
-    setIsDeletable(writerId === userId);
+    setIsEditable(writerId === userId);
   };
 
-  return { isDeletable };
+  return { isEditable };
 };
 
 export default useAuth;

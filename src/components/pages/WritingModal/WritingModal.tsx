@@ -7,10 +7,6 @@ import Modal from '../../Modal';
 
 import * as Styled from './WritingModal.styled';
 
-type WritingModalProps = {
-  onHide: () => void;
-};
-
 // TODO: 이미지 임의로 넣어놓음
 const initialValues = {
   title: '',
@@ -18,6 +14,10 @@ const initialValues = {
   postImg:
     'https://user-images.githubusercontent.com/40762111/162617063-06791489-73a0-4249-9c4d-a9b515449a2a.png',
   jobIds: [] as Array<number>,
+};
+
+type WritingModalProps = {
+  onHide: () => void;
 };
 
 const WritingModal = (props: WritingModalProps) => {

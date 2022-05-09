@@ -13,7 +13,8 @@ import RegistrationPage from './components/pages/RegistrationPage/RegistrationPa
 // TODO: private 설정
 const AppRouter = () => {
   // TODO: 더 좋은 방식 찾아보기 - 훅으로 빼기
-  const [isModalVisible, setModalVisible] = useState(false);
+  const [isWritingModalVisible, setWritingModalVisible] = useState(false);
+  const [isRevisionModalVisible, setRevisionModalVisible] = useState(false);
 
   return (
     <Routes>
@@ -24,10 +25,20 @@ const AppRouter = () => {
         <Route path="registration" element={<RegistrationPage />} />
       </Route>
       <Route
-        element={<PageTemplate isModalVisible={isModalVisible} setModalVisible={setModalVisible} />}
+        element={
+          <PageTemplate
+            isWritingModalVisible={isWritingModalVisible}
+            isRevisionModalVisible={isRevisionModalVisible}
+            setWritingModalVisible={setWritingModalVisible}
+            setRevisionModalVisible={setRevisionModalVisible}
+          />
+        }
       >
-        <Route path="/" element={<HomePage modalChanged={isModalVisible} />} />
-        <Route path="/posts/:id" element={<DetailPage />} />
+        <Route path="/" element={<HomePage modalChanged={isWritingModalVisible} />} />
+        <Route
+          path="/posts/:id"
+          element={<DetailPage setRevisionModalVisible={setRevisionModalVisible} />}
+        />
       </Route>
     </Routes>
   );

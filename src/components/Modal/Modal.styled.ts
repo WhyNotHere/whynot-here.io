@@ -35,6 +35,7 @@ export const HeaderSubmitButtonContainer = styled(HeaderButtonContainer)`
   font-size: 1.125rem;
   font-weight: 700;
   cursor: pointer;
+  padding-right: 0.625rem;
 
   color: ${({ theme }) => theme.color.post_info};
 `;

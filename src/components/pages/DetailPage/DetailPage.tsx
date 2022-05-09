@@ -14,11 +14,17 @@ import * as JobMapper from '../../../domains/job/job.mapper';
 
 import { parseDate } from '../../utils/parseDate';
 
-const DetailPage = () => {
+type DetailPageProps = {
+  setRevisionModalVisible: (isRevisionModalVisible: boolean) => void;
+};
+
+const DetailPage = (props: DetailPageProps) => {
+  const { setRevisionModalVisible } = props;
+
   const { id } = useParams<Record<string, string | undefined>>();
   // TODO: 타입 지정
   const [post, setPost] = useState<any>();
-  const { isDeletable } = useAuth({ postId: id });
+  const { isEditable } = useAuth({ postId: id });
   const navigate = useNavigate();
 
   // TODO: api 호출 정리
@@ -70,7 +76,19 @@ const DetailPage = () => {
                   <Styled.PostHeaderComment>{0}</Styled.PostHeaderComment>
                 </Styled.IconInfoContainer>
               </Styled.PostHeaderLeftContainer>
-              {isDeletable && <Styled.DeleteIcon onClick={handlePostDelete} />}
+              {isEditable && (
+                <Styled.PostHeaderRightContainer>
+                  <Styled.PostContentButton
+                    $type="text"
+                    onClick={() => setRevisionModalVisible(true)}
+                  >
+                    수정
+                  </Styled.PostContentButton>
+                  <Styled.PostContentButton $type="text" onClick={handlePostDelete}>
+                    삭제
+                  </Styled.PostContentButton>
+                </Styled.PostHeaderRightContainer>
+              )}
             </Styled.PostInfoContainer>
           </Styled.PostHeaderContainer>
 

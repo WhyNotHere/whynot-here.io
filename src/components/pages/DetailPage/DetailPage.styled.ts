@@ -1,10 +1,7 @@
 import styled from '@emotion/styled';
-import {
-  ClockCircleOutlined,
-  DeleteOutlined,
-  LikeOutlined,
-  MessageOutlined,
-} from '@ant-design/icons';
+import { ClockCircleOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons';
+
+import BaseButton from '../../Button';
 
 export const Container = styled.div`
   display: flex;
@@ -32,6 +29,10 @@ export const PostInfoContainer = styled.div`
 export const PostHeaderLeftContainer = styled.div`
   display: flex;
   gap: 1rem;
+`;
+
+export const PostHeaderRightContainer = styled.div`
+  display: flex;
 `;
 
 export const PostContentLeftContainer = styled.div`
@@ -123,8 +124,11 @@ export const PostContentCommentIcon = styled(MessageOutlined)`
   color: ${({ theme }) => theme.color.black};
 `;
 
-export const DeleteIcon = styled(DeleteOutlined)`
-  font-size: 0.875rem;
+// TODO: 버튼 컴포넌트 수정하기??
+export const PostContentButton = styled(BaseButton)`
+  border: none;
+  font-size: 0.75rem;
+  width: 1.875rem;
 
   color: ${({ theme }) => theme.color.post_info};
 `;
