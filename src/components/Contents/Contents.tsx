@@ -4,25 +4,33 @@ import { useNavigate } from 'react-router-dom';
 
 import { getPostsAsync } from '../../apis/request';
 
-import CircleTag from '../CircleTag';
+// import CircleTag from '../CircleTag';
 
+import * as Mapper from './Contents.mapper';
+import * as Utils from './Contents.utils';
 import * as Styled from './Contents.styled';
-import * as JobMapper from '../../domains/job/job.mapper';
+// import * as JobMapper from '../../domains/job/job.mapper';
+// import * as DTO from '../../domains/job/job.dto';
+// TODO: DTO 분리
+import * as PostDTO from '../../domains/post/post.dto';
+import * as PostType from '../../domains/post/post.type';
 
 import { parseDate } from '../utils/parseDate';
 
-import { Job } from '../../domains/job/job.type';
+import { SearchFilter } from '../Filter/Filter.type';
 
 type ContentsProps = {
   modalChanged: boolean;
+  searchFilter: Array<SearchFilter>;
 };
 
 // TODO: 안에 있는 부분 컴포넌트로 분리
 const Contents = (props: ContentsProps) => {
-  const { modalChanged } = props;
+  const { modalChanged, searchFilter } = props;
   const navigate = useNavigate();
+  const [posts, setPosts] = useState<PostDTO.GetPostsResponse>();
   // TODO: 타입 지정
-  const [posts, setPosts] = useState<any[]>();
+  const [filteredPosts, setFilteredPosts] = useState<PostType.Posts[]>();
 
   // TODO: 로직 분리
   // TODO: 에러 처리
@@ -36,6 +44,16 @@ const Contents = (props: ContentsProps) => {
     }
   }, []);
 
+  const getFilteredPosts = useCallback(() => {
+    if (!posts) {
+      return;
+    }
+
+    const convertedPosts = Mapper.objectJobs2ArrayJobs(posts);
+
+    setFilteredPosts(convertedPosts.filter((post) => Utils.isJobsInclude(post.jobs, searchFilter)));
+  }, [posts, searchFilter]);
+
   // TODO: id type 지정
   const handlePostClick = useCallback((id: number) => navigate(`/posts/${id}`), [navigate]);
 
@@ -43,13 +61,17 @@ const Contents = (props: ContentsProps) => {
     getPosts();
   }, [getPosts, modalChanged]);
 
+  useEffect(() => {
+    getFilteredPosts();
+  }, [getFilteredPosts, searchFilter]);
+
   return (
     <Styled.Container>
-      {posts &&
-        posts.map((post) => (
+      {filteredPosts &&
+        filteredPosts.map((post) => (
           <Styled.InfoCard key={post.id} onClick={() => handlePostClick(post.id)}>
-            <Styled.Job>
-              {post.jobs.map((job: Job) => {
+            {/* <Styled.Job>
+              {post.jobs.map((job: DTO.Job) => {
                 const jobWithColor = JobMapper.job2JobWithColor(job);
 
                 return (
@@ -60,7 +82,7 @@ const Contents = (props: ContentsProps) => {
                   />
                 );
               })}
-            </Styled.Job>
+            </Styled.Job> */}
 
             <Styled.TitleContentImageContainer>
               <Styled.TitleContentContainer>

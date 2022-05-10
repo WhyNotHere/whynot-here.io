@@ -47,6 +47,7 @@ export const Divider = styled.div`
 export const TextArea = styled.textarea`
   height: 9.375rem;
   font-size: 1rem;
+  resize: none;
 
   ::placeholder {
     color: ${({ theme }) => theme.color.placeholder};

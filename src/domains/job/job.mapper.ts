@@ -1,7 +1,9 @@
 import { theme } from '../../styles/theme';
-import { Job, JobWithColor } from './job.type';
 
-export const job2JobWithColor = (job: Job): JobWithColor => {
+import * as JobType from './job.type';
+import * as JobDTO from './job.dto';
+
+export const job2JobWithColor = (job: JobDTO.Job): JobType.JobWithColor => {
   let color = '';
 
   if (job.id === 1) {
@@ -16,7 +18,19 @@ export const job2JobWithColor = (job: Job): JobWithColor => {
 
   return {
     id: job.id,
-    name: job.name,
+    name: job.name === '그 외' ? '기타' : job.name,
     color: color,
   };
+};
+
+export const jobNameKoreanToJobNameEnglish = (job: JobDTO.JobName): JobType.JobNameEnglish => {
+  if (job === '개발자') {
+    return 'developer';
+  } else if (job === '디자이너') {
+    return 'designer';
+  } else if (job === '기획자') {
+    return 'planner';
+  } else {
+    return 'etc';
+  }
 };
