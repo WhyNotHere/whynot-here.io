@@ -1,19 +1,28 @@
 import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 
 export const Container = styled.div`
   display: flex;
-  justify-content: space-between;
-  padding: 1rem 5rem;
+  padding: 1rem 1.25rem;
+  gap: 1rem;
+
   border-bottom: ${({ theme }) => `0.125rem solid ${theme.color.grid_border}`};
 `;
 
-export const Temp = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 8rem;
-  height: 2rem;
-  border-radius: 0.5rem;
+export const Button = styled.button<{ selected: boolean }>`
+  font-size: 0.875rem;
+  cursor: pointer;
 
-  border: ${({ theme }) => `0.0625rem solid ${theme.color.divider}`}; ;
+  color: ${({ theme }) => theme.color.post_info};
+
+  :hover {
+    color: ${({ theme }) => theme.color.black};
+  }
+
+  ${({ selected, theme }) =>
+    selected &&
+    css`
+      color: ${theme.color.black};
+      font-weight: 700;
+    `};
 `;
