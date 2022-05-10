@@ -10,12 +10,12 @@ export const Container = styled.div`
 export const InfoCard = styled.div`
   width: 100%;
   height: 13.75rem;
-  padding: 1.875rem 1.25rem 1.25rem 1.25rem;
+  padding: 1.25rem;
   cursor: pointer;
-  border-bottom: 0.0156rem solid ${({ theme }) => theme.color.grey};
+  border-bottom: 0.0625rem solid ${({ theme }) => theme.color.grid_border};
 
   :nth-of-type(odd) {
-    border-right: 0.0156rem solid ${({ theme }) => theme.color.grey};
+    border-right: 0.0625rem solid ${({ theme }) => theme.color.grid_border};
   }
 `;
 
@@ -94,7 +94,7 @@ export const IconText = styled.div`
 
 export const Job = styled.div`
   display: flex;
-  margin-top: 0.5rem;
+  margin-bottom: 1.25rem;
 
   > *:not(:last-child) {
     margin-right: 0.5rem;

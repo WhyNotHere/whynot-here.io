@@ -41,6 +41,11 @@ const GlobalStyle = () => (
       input[type='number'] {
         -moz-appearance: textfield;
       }
+
+      button {
+        background-color: transparent;
+        border: none;
+      }
     `}
   />
 );

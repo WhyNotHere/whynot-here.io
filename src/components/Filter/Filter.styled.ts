@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1rem 5rem;
-  border-bottom: ${({ theme }) => `0.0156rem solid ${theme.color.grey}`};
+  border-bottom: ${({ theme }) => `0.125rem solid ${theme.color.grid_border}`};
 `;
 
 export const Temp = styled.div`

@@ -36,8 +36,6 @@ export const HeaderSubmitButton = styled.button`
   font-weight: 700;
   cursor: pointer;
   padding-right: 1rem;
-
-  background-color: transparent;
 `;
 
 export const Header = styled.div`

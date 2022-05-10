@@ -10,6 +10,7 @@ const color = {
   black: '#222222',
   post_info: '#94969B',
   placeholder: '#BCC0C4',
+  grid_border: '#EEEEEE',
   jobs: {
     developer: '#3D9CD1',
     designer: '#EBB62D',

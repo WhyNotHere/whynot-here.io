@@ -48,15 +48,6 @@ const Contents = (props: ContentsProps) => {
       {posts &&
         posts.map((post) => (
           <Styled.InfoCard key={post.id} onClick={() => handlePostClick(post.id)}>
-            {/* <Styled.Image src={post.postImg} alt="project image" width="100%" /> */}
-            <Styled.TitleContentImageContainer>
-              <Styled.TitleContentContainer>
-                <Styled.Title>{post.title}</Styled.Title>
-                <Styled.Content>{post.content}</Styled.Content>
-              </Styled.TitleContentContainer>
-              {!!post.postImg && <Styled.Image src={post.postImg} alt="project image" />}
-            </Styled.TitleContentImageContainer>
-
             <Styled.Job>
               {post.jobs.map((job: Job) => {
                 const jobWithColor = JobMapper.job2JobWithColor(job);
@@ -70,6 +61,14 @@ const Contents = (props: ContentsProps) => {
                 );
               })}
             </Styled.Job>
+
+            <Styled.TitleContentImageContainer>
+              <Styled.TitleContentContainer>
+                <Styled.Title>{post.title}</Styled.Title>
+                <Styled.Content>{post.content}</Styled.Content>
+              </Styled.TitleContentContainer>
+              {!!post.postImg && <Styled.Image src={post.postImg} alt="project image" />}
+            </Styled.TitleContentImageContainer>
 
             <Styled.Writer>{post.writer.nickname}</Styled.Writer>
 
