@@ -21,6 +21,7 @@ export const InfoCard = styled.div`
 
 export const TitleContentImageContainer = styled.div`
   display: flex;
+  justify-content: space-between;
 `;
 
 export const TitleContentContainer = styled.div``;

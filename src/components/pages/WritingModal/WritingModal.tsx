@@ -1,20 +1,14 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 
 import { postWritingAsync } from '../../../apis/request';
+
+import type { FormData } from './WritingModal.type';
 
 import Modal from '../../Modal';
 
 import * as Styled from './WritingModal.styled';
-
-// TODO: 이미지 임의로 넣어놓음
-const initialValues = {
-  title: '',
-  content: '',
-  postImg:
-    'https://user-images.githubusercontent.com/40762111/162617063-06791489-73a0-4249-9c4d-a9b515449a2a.png',
-  jobIds: [] as Array<number>,
-};
 
 type WritingModalProps = {
   onHide: () => void;
@@ -22,17 +16,14 @@ type WritingModalProps = {
 
 const WritingModal = (props: WritingModalProps) => {
   const { onHide } = props;
-  const [values, setValues] = useState(initialValues);
-  const [tempJobIds, setTempJobIds] = useState<Array<number>>([]);
   const navigate = useNavigate();
+  const { register, handleSubmit, getValues, setValue } = useForm<FormData>();
+  const [ids, setIds] = useState<Array<number>>();
 
-  const handleContents = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
-      const { name, value } = event.target;
-
-      setValues({ ...values, [name]: value });
-    },
-    [values],
+  // TODO: 이미지 동적으로 바꿀 수 있도록 하기
+  setValue(
+    'postImg',
+    'https://user-images.githubusercontent.com/40762111/162617063-06791489-73a0-4249-9c4d-a9b515449a2a.png',
   );
 
   const handleFilter = useCallback(
@@ -42,42 +33,44 @@ const WritingModal = (props: WritingModalProps) => {
       }
 
       const id = Number(event.target.dataset.id);
+      const jobIds = getValues('jobIds');
 
-      if (tempJobIds.includes(id)) {
-        setTempJobIds([...tempJobIds].filter((jobId) => jobId !== id).sort());
+      if (!!jobIds) {
+        if (jobIds.includes(id)) {
+          setValue('jobIds', [...jobIds].filter((jobId) => jobId !== id).sort());
+        } else {
+          setValue('jobIds', [...jobIds, id].sort());
+        }
       } else {
-        setTempJobIds([...tempJobIds, id].sort());
+        setValue('jobIds', [id]);
       }
+      setIds(getValues('jobIds'));
     },
-    [tempJobIds],
+    [getValues, setValue],
   );
 
+  // TODO: react-hook-form의 isDirty 적용하기
   const handleWriting = useCallback(
-    async (event: React.SyntheticEvent) => {
-      event?.preventDefault();
-
+    async (formData: FormData) => {
       try {
-        await postWritingAsync(values);
+        await postWritingAsync(formData);
         navigate('/');
       } catch (error) {
         alert('다시 시도해 주세요.');
       }
       onHide();
     },
-    [values, navigate, onHide],
+    [navigate, onHide],
   );
 
-  /* eslint-disable */
-  useEffect(() => setValues({ ...values, jobIds: tempJobIds }), [tempJobIds]);
-
   return (
-    <Modal title="글쓰기" submitTitle="등록" onHide={onHide} onSubmit={handleWriting}>
+    <Modal title="글쓰기" submitTitle="등록" onHide={onHide} onSubmit={handleSubmit(handleWriting)}>
       {/* TODO: 여기 아래를 컴포넌트로 분리 */}
       <Styled.FilterContainer>
         <Styled.FilterTitle>모집</Styled.FilterTitle>
         <Styled.Button
           type="button"
-          $type={tempJobIds.includes(1) ? 'contained' : 'text'}
+          $type={ids?.includes(1) ? 'contained' : 'text'}
           data-id="1"
           onClick={handleFilter}
         >
@@ -85,7 +78,7 @@ const WritingModal = (props: WritingModalProps) => {
         </Styled.Button>
         <Styled.Button
           type="button"
-          $type={tempJobIds.includes(2) ? 'contained' : 'text'}
+          $type={ids?.includes(2) ? 'contained' : 'text'}
           data-id="2"
           onClick={handleFilter}
         >
@@ -93,7 +86,7 @@ const WritingModal = (props: WritingModalProps) => {
         </Styled.Button>
         <Styled.Button
           type="button"
-          $type={tempJobIds.includes(3) ? 'contained' : 'text'}
+          $type={ids?.includes(3) ? 'contained' : 'text'}
           data-id="3"
           onClick={handleFilter}
         >
@@ -101,7 +94,7 @@ const WritingModal = (props: WritingModalProps) => {
         </Styled.Button>
         <Styled.Button
           type="button"
-          $type={tempJobIds.includes(4) ? 'contained' : 'text'}
+          $type={ids?.includes(4) ? 'contained' : 'text'}
           data-id="4"
           onClick={handleFilter}
         >
@@ -109,18 +102,11 @@ const WritingModal = (props: WritingModalProps) => {
         </Styled.Button>
       </Styled.FilterContainer>
       <Styled.ContentContainer>
-        <Styled.TitleInput
-          name="title"
-          value={values.title}
-          placeholder="제목을 입력해 주세요."
-          onChange={handleContents}
-        />
+        <Styled.TitleInput {...register('title')} placeholder="제목을 입력해 주세요." />
         <Styled.Divider />
         <Styled.TextArea
-          name="content"
-          value={values.content}
+          {...register('content')}
           placeholder="게시글의 목적에 맞지 않는 글로 판단되는 경우 글이 숨김 처리될 수 있습니다."
-          onChange={handleContents}
         />
       </Styled.ContentContainer>
       <Styled.Footer>
