@@ -15,15 +15,13 @@ const Modal = (props: ModalProps) => {
 
   return (
     <Styled.Background>
-      <Styled.Container>
+      <Styled.Container onSubmit={onSubmit}>
         <Styled.Header>
           <Styled.HeaderButtonContainer>
             <Styled.CloseIcon onClick={onHide} />
           </Styled.HeaderButtonContainer>
           <Styled.Title>{title}</Styled.Title>
-          <Styled.HeaderSubmitButtonContainer onClick={onSubmit}>
-            {submitTitle}
-          </Styled.HeaderSubmitButtonContainer>
+          <Styled.HeaderSubmitButton type="submit">{submitTitle}</Styled.HeaderSubmitButton>
         </Styled.Header>
         {children}
       </Styled.Container>

@@ -31,13 +31,13 @@ export const HeaderButtonContainer = styled.div`
   align-items: center;
 `;
 
-export const HeaderSubmitButtonContainer = styled(HeaderButtonContainer)`
+export const HeaderSubmitButton = styled.button`
   font-size: 1.125rem;
   font-weight: 700;
   cursor: pointer;
-  padding-right: 0.625rem;
+  padding-right: 1rem;
 
-  color: ${({ theme }) => theme.color.post_info};
+  background-color: transparent;
 `;
 
 export const Header = styled.div`
