@@ -1,16 +1,14 @@
-// TODO: DTO 분리
-import * as AccountDTO from '../account/account.dto';
-import * as JobType from '../job/job.type';
+import * as CommonType from '../common.type';
 
-export type Posts = {
+export type Post = {
   id: number;
   title: string;
   postImg: string;
   createdDt: string;
   updatedDt: string;
-  writer: AccountDTO.AccountResponseDTO;
+  writer: CommonType.AccountInfo;
   content: string;
-  jobs: Array<JobType.JobNameEnglish>;
-  applicants: Array<AccountDTO.AccountResponseDTO>;
+  jobs: Array<CommonType.JobEnglish>;
+  applicants: Array<CommonType.AccountInfo>;
   recruiting: boolean;
 };

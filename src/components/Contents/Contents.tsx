@@ -2,22 +2,20 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getPostsAsync } from '../../apis/request';
+import type * as PostType from '../../domains/post/post.type';
+import { useGetPosts } from '../../domains/post/post.api';
 
-// import CircleTag from '../CircleTag';
-
-import * as Mapper from './Contents.mapper';
 import * as Utils from './Contents.utils';
 import * as Styled from './Contents.styled';
+
+// TODO: DTO 분리
+// import CircleTag from '../CircleTag';
 // import * as JobMapper from '../../domains/job/job.mapper';
 // import * as DTO from '../../domains/job/job.dto';
-// TODO: DTO 분리
-import * as PostDTO from '../../domains/post/post.dto';
-import * as PostType from '../../domains/post/post.type';
+
+import type { SearchFilter } from '../Filter/Filter.type';
 
 import { parseDate } from '../utils/parseDate';
-
-import { SearchFilter } from '../Filter/Filter.type';
 
 type ContentsProps = {
   modalChanged: boolean;
@@ -28,42 +26,36 @@ type ContentsProps = {
 const Contents = (props: ContentsProps) => {
   const { modalChanged, searchFilter } = props;
   const navigate = useNavigate();
-  const [posts, setPosts] = useState<PostDTO.GetPostsResponse>();
-  // TODO: 타입 지정
-  const [filteredPosts, setFilteredPosts] = useState<PostType.Posts[]>();
+  const [filteredPosts, setFilteredPosts] = useState<PostType.Post[]>();
 
-  // TODO: 로직 분리
-  // TODO: 에러 처리
-  const getPosts = useCallback(async () => {
-    try {
-      const newPosts = await getPostsAsync();
+  const { data: posts, isLoading, isError, refetch } = useGetPosts();
 
-      setPosts(newPosts);
-    } catch (error) {
-      console.error(error);
-    }
-  }, []);
-
+  // TODO: 서버 필터 기능 작업되면 수정
   const getFilteredPosts = useCallback(() => {
     if (!posts) {
       return;
     }
 
-    const convertedPosts = Mapper.objectJobs2ArrayJobs(posts);
-
-    setFilteredPosts(convertedPosts.filter((post) => Utils.isJobsInclude(post.jobs, searchFilter)));
+    setFilteredPosts(posts.filter((post) => Utils.isJobsInclude(post.jobs, searchFilter)));
   }, [posts, searchFilter]);
 
-  // TODO: id type 지정
   const handlePostClick = useCallback((id: number) => navigate(`/posts/${id}`), [navigate]);
 
   useEffect(() => {
-    getPosts();
-  }, [getPosts, modalChanged]);
+    refetch();
+  }, [refetch, modalChanged]);
 
   useEffect(() => {
     getFilteredPosts();
-  }, [getFilteredPosts, searchFilter]);
+  }, [getFilteredPosts, searchFilter, posts]);
+
+  if (isLoading) {
+    return <div>Loading</div>;
+  }
+
+  if (isError) {
+    return <div>Error</div>;
+  }
 
   return (
     <Styled.Container>

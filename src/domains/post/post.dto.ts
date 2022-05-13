@@ -14,4 +14,4 @@ export type PostResponseDTO = {
   recruiting: boolean;
 };
 
-export type GetPostsResponse = PostResponseDTO[];
+export type GetPostsResponse = Array<PostResponseDTO>;
