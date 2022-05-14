@@ -1,16 +1,17 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import useAuth from '../../../hooks/useAuth';
-import { deletePostAsync, getPostAsync } from '../../../apis/request';
+import usePost from '../../../hooks/usePost';
 
-import Button from '../../Button';
-import CircleTag from '../../CircleTag';
+import type * as PostAction from '../../../domains/post/post.action';
+import { useDeletePost, useGetPost } from '../../../domains/post/post.api';
 
 import * as Styled from './DetailPage.styled';
 
-import type { Job } from '../../../domains/job/job.type';
-import * as JobMapper from '../../../domains/job/job.mapper';
+// import CircleTag from '../../CircleTag';
+import Button from '../../Button';
+// import type { Job } from '../../../domains/job/job.type';
+// import * as JobMapper from '../../../domains/job/job.mapper';
 
 import { parseDate } from '../../utils/parseDate';
 
@@ -20,45 +21,33 @@ type DetailPageProps = {
 
 const DetailPage = (props: DetailPageProps) => {
   const { setRevisionModalVisible } = props;
-
-  const { id } = useParams<Record<string, string | undefined>>();
-  // TODO: 타입 지정
-  const [post, setPost] = useState<any>();
-  const { isEditable } = useAuth({ postId: id });
+  const { id: postId } = useParams();
+  const { isEditable } = usePost();
   const navigate = useNavigate();
-
-  // TODO: api 호출 정리
-  const getPost = useCallback(async (id: string | undefined) => {
-    try {
-      const newPost = await getPostAsync(id);
-
-      setPost(newPost);
-    } catch (error) {
-      console.error(error);
-    }
-  }, []);
-
-  const onClickApply = () => {
-    console.log('click Apply Button');
-  };
+  const {
+    data: post,
+    isLoading,
+    isError,
+  } = useGetPost(postId as unknown as PostAction.GetPostCriteria);
+  const { mutateAsync: mutateDeletePost } = useDeletePost();
 
   const handlePostDelete = useCallback(async () => {
     try {
       if (confirm('해당 게시물을 삭제하시겠습니까?')) {
-        await deletePostAsync(Number(id));
+        await mutateDeletePost(postId as unknown as PostAction.DeletePostCommand);
 
         navigate('/');
       }
     } catch (error) {
       console.error(error);
     }
-  }, [id, navigate]);
+  }, [postId, mutateDeletePost, navigate]);
 
-  useEffect(() => {
-    getPost(id);
-  }, [id, getPost]);
-
-  return (
+  return isLoading ? (
+    <div>Loading...</div>
+  ) : isError ? (
+    <div>Error</div>
+  ) : (
     <Styled.Container>
       {post && (
         <Styled.SubContainer>
@@ -98,17 +87,17 @@ const DetailPage = (props: DetailPageProps) => {
             <Styled.RecruitmentTitle>모집</Styled.RecruitmentTitle>
 
             <Styled.JobContainer>
-              {post.jobs.map((job: Job) => {
-                const jobWithColor = JobMapper.job2JobWithColor(job);
+              {/* {post.jobs.map((job: Job) => {
+            const jobWithColor = JobMapper.job2JobWithColor(job);
 
-                return (
-                  <CircleTag
-                    key={jobWithColor.id}
-                    circleColor={jobWithColor.color}
-                    text={jobWithColor.name}
-                  />
-                );
-              })}
+            return (
+              <CircleTag
+                key={jobWithColor.id}
+                circleColor={jobWithColor.color}
+                text={jobWithColor.name}
+              />
+            );
+          })} */}
             </Styled.JobContainer>
           </Styled.RecruitmentContainer>
 
@@ -132,7 +121,7 @@ const DetailPage = (props: DetailPageProps) => {
           <Styled.DivisionLine />
 
           <Styled.ButtonContainer>
-            <Button onClick={onClickApply}>지원하기</Button>
+            <Button onClick={() => console.log('apply')}>지원하기</Button>
           </Styled.ButtonContainer>
         </Styled.SubContainer>
       )}

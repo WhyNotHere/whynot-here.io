@@ -1,17 +1,20 @@
-import * as JobDTO from '../job/job.dto';
-import * as AccountDTO from '../account/account.dto';
+import type * as CommonDTO from '../common.dto';
 
-export type PostResponseDTO = {
+type PostResponseDTO = {
   id: number;
   title: string;
   postImg: string;
   createdDt: string;
   updatedDt: string;
-  writer: AccountDTO.AccountResponseDTO;
+  writer: CommonDTO.AccountInfo;
   content: string;
-  jobs: Array<JobDTO.Job>;
-  applicants: Array<AccountDTO.AccountResponseDTO>;
+  jobs: Array<CommonDTO.JobInfo>;
+  applicants: Array<CommonDTO.AccountInfo>;
   recruiting: boolean;
 };
 
 export type GetPostsResponse = Array<PostResponseDTO>;
+
+export type GetPostResponse = PostResponseDTO;
+
+export type DeletePostResponse = CommonDTO.ResponseDTO;

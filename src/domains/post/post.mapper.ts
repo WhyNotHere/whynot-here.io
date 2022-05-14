@@ -1,5 +1,5 @@
-import * as DTO from './post.dto';
-import * as Type from './post.type';
+import type * as DTO from './post.dto';
+import type * as Type from './post.type';
 
 export const jobNameKorean2JobNameEnglish = (
   job: '개발자' | '디자이너' | '기획자' | '그 외',
@@ -28,4 +28,19 @@ export const d2TMapper_getPostsResponse_Post = (dto: DTO.GetPostsResponse): Arra
     applicants: post.applicants,
     recruiting: post.recruiting,
   }));
+};
+
+export const d2TMapper_getPostResponse_Post = (dto: DTO.GetPostResponse): Type.Post => {
+  return {
+    id: dto.id,
+    title: dto.title,
+    postImg: dto.postImg,
+    createdDt: dto.createdDt,
+    updatedDt: dto.updatedDt,
+    writer: dto.writer,
+    content: dto.content,
+    jobs: dto.jobs.map((job) => jobNameKorean2JobNameEnglish(job.name)),
+    applicants: dto.applicants,
+    recruiting: dto.recruiting,
+  };
 };

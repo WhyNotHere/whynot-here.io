@@ -1,9 +1,9 @@
 import { theme } from '../../styles/theme';
 
 import * as JobType from './job.type';
-import * as JobDTO from './job.dto';
+import * as CommonDTO from '../common.dto';
 
-export const job2JobWithColor = (job: JobDTO.Job): JobType.JobWithColor => {
+export const job2JobWithColor = (job: CommonDTO.JobInfo): JobType.JobWithColor => {
   let color = '';
 
   if (job.id === 1) {
@@ -23,7 +23,9 @@ export const job2JobWithColor = (job: JobDTO.Job): JobType.JobWithColor => {
   };
 };
 
-export const jobNameKoreanToJobNameEnglish = (job: JobDTO.JobName): JobType.JobNameEnglish => {
+export const jobNameKoreanToJobNameEnglish = (
+  job: CommonDTO.JobInfoName,
+): JobType.JobNameEnglish => {
   if (job === '개발자') {
     return 'developer';
   } else if (job === '디자이너') {

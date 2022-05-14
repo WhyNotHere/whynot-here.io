@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import type * as PostType from '../../domains/post/post.type';
-import { useGetPosts } from '../../domains/post/post.api';
+import { useGetPostList } from '../../domains/post/post.api';
 
 import * as Utils from './Contents.utils';
 import * as Styled from './Contents.styled';
@@ -28,7 +28,7 @@ const Contents = (props: ContentsProps) => {
   const navigate = useNavigate();
   const [filteredPosts, setFilteredPosts] = useState<PostType.Post[]>();
 
-  const { data: posts, isLoading, isError, refetch } = useGetPosts();
+  const { data: posts, isLoading, isError, refetch } = useGetPostList();
 
   // TODO: 서버 필터 기능 작업되면 수정
   const getFilteredPosts = useCallback(() => {
@@ -49,32 +49,28 @@ const Contents = (props: ContentsProps) => {
     getFilteredPosts();
   }, [getFilteredPosts, searchFilter, posts]);
 
-  if (isLoading) {
-    return <div>Loading</div>;
-  }
-
-  if (isError) {
-    return <div>Error</div>;
-  }
-
-  return (
+  return isLoading ? (
+    <div>Loading...</div>
+  ) : isError ? (
+    <div>Error</div>
+  ) : (
     <Styled.Container>
       {filteredPosts &&
         filteredPosts.map((post) => (
           <Styled.InfoCard key={post.id} onClick={() => handlePostClick(post.id)}>
             {/* <Styled.Job>
-              {post.jobs.map((job: DTO.Job) => {
-                const jobWithColor = JobMapper.job2JobWithColor(job);
+          {post.jobs.map((job: DTO.Job) => {
+            const jobWithColor = JobMapper.job2JobWithColor(job);
 
-                return (
-                  <CircleTag
-                    key={jobWithColor.id}
-                    circleColor={jobWithColor.color}
-                    text={jobWithColor.name}
-                  />
-                );
-              })}
-            </Styled.Job> */}
+            return (
+              <CircleTag
+                key={jobWithColor.id}
+                circleColor={jobWithColor.color}
+                text={jobWithColor.name}
+              />
+            );
+          })}
+        </Styled.Job> */}
 
             <Styled.TitleContentImageContainer>
               <Styled.TitleContentContainer>

@@ -1,8 +1,3 @@
-export type AccountResponseDTO = {
-  id: number;
-  email: string;
-  nickname: string;
-  profileImg: string;
-};
+import type * as CommonDTO from '../common.dto';
 
-export type GetAccountInfo = AccountResponseDTO;
+export type GetAccountInfo = CommonDTO.AccountInfo;

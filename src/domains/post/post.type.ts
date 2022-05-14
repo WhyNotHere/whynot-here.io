@@ -1,4 +1,4 @@
-import * as CommonType from '../common.type';
+import type * as CommonType from '../common.type';
 
 export type Post = {
   id: number;

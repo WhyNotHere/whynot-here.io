@@ -19,12 +19,6 @@ export const getLoginStateAsync = async () => {
   return data;
 };
 
-export const getAccountInfoAsync = async () => {
-  const { data } = await axiosInstance.get('/v1/account/info');
-
-  return data;
-};
-
 export const postSignupAsync = async (nickname: string, email: string, password: string) => {
   const { data } = await axiosInstance.post('/v1/sign-up', { nickname, email, password });
 
@@ -50,18 +44,6 @@ export const getCheckingAuthenticationCodeAsync = async (token: string, email: s
 };
 
 /* Post */
-
-export const getPostAsync = async (id: string | undefined) => {
-  const { data } = await axiosInstance.get(`/v1/posts/${id}`);
-
-  return data;
-};
-
-export const deletePostAsync = async (id: number) => {
-  const { data } = await axiosInstance.delete(`/v1/posts/${id}`);
-
-  return data;
-};
 
 export const postWritingAsync = async ({
   title,
