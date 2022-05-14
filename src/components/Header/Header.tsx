@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { getLoginStateAsync, postLogoutAsync } from '../../apis/request';
+import { useSignOut } from '../../domains/sign-in/sign-in.api';
+
+import * as Styled from './Header.styled';
 
 import Logo from '../Logo';
 
-import * as Styled from './Header.styled';
+import { getLoginStateAsync } from '../../apis/request';
 
 type HeaderProps = {
   setModalVisible: (isModalVisible: boolean) => void;
@@ -16,6 +18,7 @@ const Header = (props: HeaderProps) => {
 
   const [isLogin, setLogin] = useState(false);
   const navigate = useNavigate();
+  const { mutateAsync: mutateSignOut } = useSignOut();
 
   const handleWritingClick = useCallback(() => {
     if (!isLogin) {
@@ -30,17 +33,17 @@ const Header = (props: HeaderProps) => {
 
   const handleLoginClick = useCallback(() => navigate('/login'), [navigate]);
 
-  const handleLogoutClick = useCallback(() => {
+  const handleLogoutClick = useCallback(async () => {
     if (confirm('로그아웃 하시겠습니까?')) {
       try {
-        postLogoutAsync();
+        await mutateSignOut();
 
         setLogin(false);
       } catch (error) {
         console.error(error);
       }
     }
-  }, []);
+  }, [mutateSignOut]);
 
   // TODO: 훅으로 분리
   const getLoginState = useCallback(async () => {

@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { postLoginAsync } from '../../../apis/request';
+import { useSignInWithEmailNickname } from '../../../domains/sign-in/sign-in.api';
 
 import * as Styled from './LoginPage.styled';
 
@@ -16,6 +16,7 @@ const initialValues = {
 const LoginPage = () => {
   const [values, setValues] = useState(initialValues);
   const navigate = useNavigate();
+  const { mutateAsync: mutateSignInWithEmailNickname } = useSignInWithEmailNickname();
 
   const handleInputsChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -31,14 +32,14 @@ const LoginPage = () => {
       event.preventDefault();
 
       try {
-        await postLoginAsync(values.email, values.password);
+        await mutateSignInWithEmailNickname({ email: values.email, password: values.password });
 
         navigate('/');
       } catch (error) {
         alert('이메일 또는 닉네임, 비밀번호를 확인해 주세요.');
       }
     },
-    [values, navigate],
+    [mutateSignInWithEmailNickname, values.email, values.password, navigate],
   );
 
   return (

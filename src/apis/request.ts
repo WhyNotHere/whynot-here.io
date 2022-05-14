@@ -40,19 +40,3 @@ export const getCheckingAuthenticationCodeAsync = async (token: string, email: s
 
   return data;
 };
-
-/* Login */
-
-export const postLoginAsync = async (email: string, password: string) => {
-  const form = new FormData();
-  form.append('email', email);
-  form.append('password', password);
-
-  const { data } = await axiosInstance.post('/v1/login', form);
-
-  return data;
-};
-
-export const postLogoutAsync = () => {
-  axiosInstance.post('/v1/logout');
-};
