@@ -27,7 +27,7 @@ const CheckEmailPage = () => {
         alert('이메일을 발송했습니다.');
 
         navigate(`${RoutePath.SIGN_UP}/${RoutePath.CHECK_AUTHENTICATION_CODE}`, {
-          state: { tmpEmail: data },
+          state: { tmpEmail: data.email },
         });
       } catch (error) {
         alert('이미 가입한 이메일입니다.');
