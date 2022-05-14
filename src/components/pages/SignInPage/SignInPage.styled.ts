@@ -33,7 +33,7 @@ export const SubContainer = styled.div`
   background-color: ${({ theme }) => theme.color.white};
 `;
 
-export const LoginContainer = styled.form`
+export const SignInContainer = styled.form`
   display: flex;
   flex-direction: column;
 `;
@@ -58,7 +58,7 @@ export const Input = styled.input`
   border: 1px solid ${({ theme }) => theme.color.grey};
 `;
 
-export const LoginButton = styled(Button)`
+export const SignInButton = styled(Button)`
   width: 20rem;
   height: 3.125rem;
   margin-top: 1.25rem;

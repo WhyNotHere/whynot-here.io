@@ -8,6 +8,7 @@ import * as Styled from './Header.styled';
 import Logo from '../Logo';
 
 import { getLoginStateAsync } from '../../apis/request';
+import { RoutePath } from '../../RoutePath';
 
 type HeaderProps = {
   setModalVisible: (isModalVisible: boolean) => void;
@@ -23,7 +24,7 @@ const Header = (props: HeaderProps) => {
   const handleWritingClick = useCallback(() => {
     if (!isLogin) {
       alert('로그인이 필요합니다.');
-      navigate('/login');
+      navigate(RoutePath.SIGN_IN);
 
       return;
     }
@@ -31,7 +32,7 @@ const Header = (props: HeaderProps) => {
     setModalVisible(true);
   }, [isLogin, navigate, setModalVisible]);
 
-  const handleLoginClick = useCallback(() => navigate('/login'), [navigate]);
+  const handleLoginClick = useCallback(() => navigate(RoutePath.SIGN_IN), [navigate]);
 
   const handleLogoutClick = useCallback(async () => {
     if (confirm('로그아웃 하시겠습니까?')) {

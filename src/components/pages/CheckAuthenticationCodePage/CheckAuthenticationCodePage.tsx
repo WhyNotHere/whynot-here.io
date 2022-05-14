@@ -8,6 +8,8 @@ import { getCheckingAuthenticationCodeAsync } from '../../../apis/request';
 import * as Styled from './CheckAuthenticationCodePage.styled';
 import type { LocationState } from './CheckAuthenticationCodePage.type';
 
+import { RoutePath } from '../../../RoutePath';
+
 const CheckAuthenticationCodePage = () => {
   const [code, setCode] = useState('');
   const {
@@ -31,7 +33,9 @@ const CheckAuthenticationCodePage = () => {
         }
 
         await getCheckingAuthenticationCodeAsync(code, tmpEmail);
-        navigate('/signup/registration', { state: { tmpEmail: tmpEmail } });
+        navigate(`${RoutePath.SIGN_UP}/${RoutePath.REGISTRATION}`, {
+          state: { tmpEmail: tmpEmail },
+        });
       } catch (error) {
         alert('인증 코드가 올바르지 않습니다.');
       }

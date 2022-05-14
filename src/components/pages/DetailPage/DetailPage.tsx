@@ -14,6 +14,7 @@ import Button from '../../Button';
 // import * as JobMapper from '../../../domains/job/job.mapper';
 
 import { parseDate } from '../../utils/parseDate';
+import { RoutePath } from '../../../RoutePath';
 
 type DetailPageProps = {
   setRevisionModalVisible: (isRevisionModalVisible: boolean) => void;
@@ -36,7 +37,7 @@ const DetailPage = (props: DetailPageProps) => {
       if (confirm('해당 게시물을 삭제하시겠습니까?')) {
         await mutateDeletePost(postId as unknown as PostAction.DeletePostCommand);
 
-        navigate('/');
+        navigate(RoutePath.HOME);
       }
     } catch (error) {
       console.error(error);

@@ -9,6 +9,8 @@ import Modal from '../../Modal';
 
 import * as Styled from './WritingModal.styled';
 
+import { RoutePath } from '../../../RoutePath';
+
 type WritingModalProps = {
   onHide: () => void;
 };
@@ -55,7 +57,7 @@ const WritingModal = (props: WritingModalProps) => {
       try {
         await mutateCreatePost(formData);
 
-        navigate('/');
+        navigate(RoutePath.HOME);
       } catch (error) {
         alert('다시 시도해 주세요.');
       }

@@ -6,6 +6,8 @@ import { postCheckingNicknameAsync, postSignupAsync } from '../../../apis/reques
 import * as Styled from './RegistrationPage.styled';
 import { LocationState } from './RegistrationPage.type';
 
+import { RoutePath } from '../../../RoutePath';
+
 const initialValues = {
   nickname: '',
   password: '',
@@ -79,7 +81,7 @@ const RegistrationPage = () => {
         await postSignupAsync(values.nickname, tmpEmail, values.password);
 
         alert('회원가입에 성공하셨습니다.');
-        navigate('/login');
+        navigate(RoutePath.SIGN_IN);
       } catch (error) {
         alert('다시 시도해 주세요.');
       }

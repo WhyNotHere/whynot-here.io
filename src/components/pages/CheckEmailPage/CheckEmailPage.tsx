@@ -5,6 +5,8 @@ import { postCheckingEmailAsync } from '../../../apis/request';
 
 import * as Styled from './CheckEmailPage.styled';
 
+import { RoutePath } from '../../../RoutePath';
+
 const CheckEmailPage = () => {
   const [email, setEmail] = useState<string>('');
   const navigate = useNavigate();
@@ -28,7 +30,9 @@ const CheckEmailPage = () => {
         await postCheckingEmailAsync(email);
         alert('이메일을 발송했습니다.');
 
-        navigate('/signup/check-authentication-code', { state: { tmpEmail: email } });
+        navigate(`${RoutePath.SIGN_UP}/${RoutePath.CHECK_AUTHENTICATION_CODE}`, {
+          state: { tmpEmail: email },
+        });
       } catch (error) {
         alert('이미 가입한 이메일입니다.');
       }
