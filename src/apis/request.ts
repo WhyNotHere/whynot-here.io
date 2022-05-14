@@ -29,12 +29,6 @@ export const postCheckingNicknameAsync = async (nickname: string) => {
   return data;
 };
 
-export const postCheckingEmailAsync = async (email: string) => {
-  const { data } = await axiosInstance.post('/v1/check-email-duplicate', { email });
-
-  return data;
-};
-
 export const getCheckingAuthenticationCodeAsync = async (token: string, email: string) => {
   const { data } = await axiosInstance.get(`/v1/check-email-token?token=${token}&email=${email}`);
 

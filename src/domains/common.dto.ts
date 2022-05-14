@@ -17,3 +17,9 @@ export type ResponseDTO = {
   statusCode: number;
   message: string;
 };
+
+export type ErrorResponseDTO = {
+  statusCode: number;
+  message: string;
+  errors: null;
+};
