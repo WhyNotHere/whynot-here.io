@@ -30,6 +30,7 @@ const color = {
     light: rgbaWithHex('#BFC0C6', 0.3),
     dark: '#d4d6da',
   },
+  error: '#FF003E',
 };
 
 export default color;

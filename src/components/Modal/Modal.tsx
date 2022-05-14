@@ -21,7 +21,7 @@ const Modal = (props: ModalProps) => {
             <Styled.CloseIcon onClick={onHide} />
           </Styled.HeaderButtonContainer>
           <Styled.Title>{title}</Styled.Title>
-          <Styled.HeaderSubmitButton type="submit">{submitTitle}</Styled.HeaderSubmitButton>
+          <Styled.HeaderSubmitButton>{submitTitle}</Styled.HeaderSubmitButton>
         </Styled.Header>
         {children}
       </Styled.Container>

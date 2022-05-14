@@ -33,7 +33,7 @@ export const SubContainer = styled.div`
   background-color: ${({ theme }) => theme.color.white};
 `;
 
-export const SignInContainer = styled.form`
+export const SignInForm = styled.form`
   display: flex;
   flex-direction: column;
 `;
@@ -56,6 +56,12 @@ export const Input = styled.input`
   padding: 1rem;
 
   border: 1px solid ${({ theme }) => theme.color.grey};
+`;
+
+export const ErrorMessage = styled.p`
+  font-size: 14px;
+
+  color: ${({ theme }) => theme.color.error};
 `;
 
 export const SignInButton = styled(Button)`
