@@ -18,7 +18,11 @@ const initialValues = {
 const SignInPage = () => {
   const [values, setValues] = useState(initialValues);
   const navigate = useNavigate();
-  const { mutateAsync: mutateSignInWithEmailNickname } = useSignInWithEmailNickname();
+  const {
+    mutateAsync: mutateSignInWithEmailNickname,
+    isLoading,
+    isError,
+  } = useSignInWithEmailNickname();
 
   const handleInputsChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -44,7 +48,11 @@ const SignInPage = () => {
     [mutateSignInWithEmailNickname, values.email, values.password, navigate],
   );
 
-  return (
+  return isLoading ? (
+    <div>Loading...</div>
+  ) : isError ? (
+    <div>Error</div>
+  ) : (
     <Styled.Container>
       <Styled.WhyNotHereLogo />
       <Styled.SubContainer>

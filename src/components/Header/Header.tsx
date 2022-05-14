@@ -19,7 +19,7 @@ const Header = (props: HeaderProps) => {
 
   const [isLogin, setLogin] = useState(false);
   const navigate = useNavigate();
-  const { mutateAsync: mutateSignOut } = useSignOut();
+  const { mutateAsync: mutateSignOut, isLoading, isError } = useSignOut();
 
   const handleWritingClick = useCallback(() => {
     if (!isLogin) {
@@ -61,7 +61,11 @@ const Header = (props: HeaderProps) => {
     getLoginState();
   }, [getLoginState]);
 
-  return (
+  return isLoading ? (
+    <div>Loading...</div>
+  ) : isError ? (
+    <div>Error</div>
+  ) : (
     <Styled.Container>
       <Styled.Space />
       <Logo />

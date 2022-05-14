@@ -11,7 +11,7 @@ import { RoutePath } from '../../../RoutePath';
 
 const CheckEmailPage = () => {
   const navigate = useNavigate();
-  const { mutateAsync: mutateCheckEmail } = useCheckEmail();
+  const { mutateAsync: mutateCheckEmail, isLoading, isError } = useCheckEmail();
   const {
     register,
     handleSubmit,
@@ -39,11 +39,23 @@ const CheckEmailPage = () => {
   return (
     <Styled.Container>
       <Styled.SubContainerForm onSubmit={handleSubmit(onSubmit)}>
-        <Styled.Title>이메일 중복 확인</Styled.Title>
-        <Styled.Input type="email" placeholder="이메일을 입력해주세요." {...register('email')} />
-        <Styled.CheckingEmailButton disabled={!isDirty}>
-          이메일로 인증 코드 받기
-        </Styled.CheckingEmailButton>
+        {isLoading ? (
+          <div>Loading...</div>
+        ) : isError ? (
+          <div>Error</div>
+        ) : (
+          <>
+            <Styled.Title>이메일 중복 확인</Styled.Title>
+            <Styled.Input
+              type="email"
+              placeholder="이메일을 입력해주세요."
+              {...register('email')}
+            />
+            <Styled.CheckingEmailButton disabled={!isDirty}>
+              이메일로 인증 코드 받기
+            </Styled.CheckingEmailButton>
+          </>
+        )}
       </Styled.SubContainerForm>
     </Styled.Container>
   );

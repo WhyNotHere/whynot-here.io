@@ -20,7 +20,7 @@ const WritingModal = (props: WritingModalProps) => {
   const navigate = useNavigate();
   const { register, handleSubmit, getValues, setValue } = useForm<PostAction.CreatePostCommand>();
   const [ids, setIds] = useState<Array<number>>();
-  const { mutateAsync: mutateCreatePost } = useCreatePost();
+  const { mutateAsync: mutateCreatePost, isLoading, isError } = useCreatePost();
 
   // TODO: 이미지 동적으로 바꿀 수 있도록 하기
   setValue(
@@ -66,7 +66,11 @@ const WritingModal = (props: WritingModalProps) => {
     [mutateCreatePost, navigate, onHide],
   );
 
-  return (
+  return isLoading ? (
+    <div>Loading...</div>
+  ) : isError ? (
+    <div>Error</div>
+  ) : (
     <Modal title="글쓰기" submitTitle="등록" onHide={onHide} onSubmit={handleSubmit(handleWriting)}>
       {/* TODO: 여기 아래를 컴포넌트로 분리 */}
       <Styled.FilterContainer>

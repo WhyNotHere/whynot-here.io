@@ -25,6 +25,7 @@ const DetailPage = (props: DetailPageProps) => {
   const { id: postId } = useParams();
   const { isEditable } = usePost();
   const navigate = useNavigate();
+  // TODO: getPost, deletePost의 isLoading, isError 구분
   const {
     data: post,
     isLoading,
