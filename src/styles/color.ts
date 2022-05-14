@@ -1,3 +1,12 @@
+export const rgbaWithHex = (color: string, alpha: number) => {
+  const [r, g, b] = color
+    .substring(1)
+    .match(/.{1,2}/g)!
+    .map((e) => parseInt(e, 16));
+
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
 const color = {
   background: '#F1F1F1',
   divider: '#DADADA',
@@ -17,15 +26,10 @@ const color = {
     planner: '#E05858',
     etc: '#9FA5A9',
   },
-};
-
-export const rgbaWithHex = (color: string, alpha: number) => {
-  const [r, g, b] = color
-    .substring(1)
-    .match(/.{1,2}/g)!
-    .map((e) => parseInt(e, 16));
-
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+  disabled: {
+    light: rgbaWithHex('#BFC0C6', 0.3),
+    dark: '#d4d6da',
+  },
 };
 
 export default color;

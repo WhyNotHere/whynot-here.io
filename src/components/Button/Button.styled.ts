@@ -15,6 +15,17 @@ export const Container = styled.button<{ $type: ButtonType }>`
       return css`
         background-color: ${theme.color.primary};
         color: ${theme.color.white};
+
+        transition: all 0.3s ease;
+
+        :disabled {
+          pointer-events: none;
+
+          color: ${theme.color.disabled.dark};
+          background-color: ${theme.color.disabled.light};
+
+          transition: all 0.3s ease;
+        }
       `;
       //TODO: 아직 스타일 못 정함
     } else if ($type === 'text') {

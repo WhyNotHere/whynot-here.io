@@ -11,10 +11,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button = (props: ButtonProps) => {
-  const { $type = 'contained', children, onClick, ...rest } = props;
+  const { $type = 'contained', children, disabled, onClick, ...rest } = props;
 
   return (
-    <Styled.Container $type={$type} {...rest} onClick={onClick}>
+    <Styled.Container $type={$type} disabled={disabled} {...rest} onClick={onClick}>
       {children}
     </Styled.Container>
   );
