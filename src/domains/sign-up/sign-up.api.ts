@@ -7,7 +7,7 @@ import type * as Action from './sign-up.action';
 import type * as DTO from './sign-up.dto';
 
 const checkEmail = async (email: Action.CheckEmailCommand): Promise<DTO.CheckEmailResponse> => {
-  const res = await axiosInstance.post('/v1/check-email-duplicate', { email });
+  const res = await axiosInstance.post('/v1/check-email-duplicate', email);
 
   const data = res.data as DTO.CheckEmailResponse;
 
