@@ -15,7 +15,9 @@ export const jobNameKorean2JobNameEnglish = (
   }
 };
 
-export const d2TMapper_getPostsResponse_Post = (dto: DTO.GetPostsResponse): Array<Type.Post> => {
+export const d2TMapper_getPostListResponse_PostList = (
+  dto: DTO.GetPostListResponse,
+): Array<Type.Post> => {
   return dto.map<Type.Post>((post) => ({
     id: post.id,
     title: post.title,

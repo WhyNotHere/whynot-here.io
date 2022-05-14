@@ -4,8 +4,6 @@
 
 import axios from 'axios';
 
-import type { PostWritingAsyncType } from './request.type';
-
 export const axiosInstance = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
   withCredentials: true,
@@ -39,24 +37,6 @@ export const postCheckingEmailAsync = async (email: string) => {
 
 export const getCheckingAuthenticationCodeAsync = async (token: string, email: string) => {
   const { data } = await axiosInstance.get(`/v1/check-email-token?token=${token}&email=${email}`);
-
-  return data;
-};
-
-/* Post */
-
-export const postWritingAsync = async ({
-  title,
-  content,
-  postImg,
-  jobIds,
-}: PostWritingAsyncType) => {
-  const { data } = await axiosInstance.post('/v1/posts', {
-    title,
-    content,
-    postImg,
-    jobIds: jobIds,
-  });
 
   return data;
 };

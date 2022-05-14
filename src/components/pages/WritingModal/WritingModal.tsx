@@ -2,9 +2,8 @@ import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
-import { postWritingAsync } from '../../../apis/request';
-
-import type { FormData } from './WritingModal.type';
+import type * as PostAction from '../../../domains/post/post.action';
+import { useCreatePost } from '../../../domains/post/post.api';
 
 import Modal from '../../Modal';
 
@@ -17,8 +16,9 @@ type WritingModalProps = {
 const WritingModal = (props: WritingModalProps) => {
   const { onHide } = props;
   const navigate = useNavigate();
-  const { register, handleSubmit, getValues, setValue } = useForm<FormData>();
+  const { register, handleSubmit, getValues, setValue } = useForm<PostAction.CreatePostCommand>();
   const [ids, setIds] = useState<Array<number>>();
+  const { mutateAsync: mutateCreatePost } = useCreatePost();
 
   // TODO: 이미지 동적으로 바꿀 수 있도록 하기
   setValue(
@@ -51,16 +51,17 @@ const WritingModal = (props: WritingModalProps) => {
 
   // TODO: react-hook-form의 isDirty 적용하기
   const handleWriting = useCallback(
-    async (formData: FormData) => {
+    async (formData: PostAction.CreatePostCommand) => {
       try {
-        await postWritingAsync(formData);
+        await mutateCreatePost(formData);
+
         navigate('/');
       } catch (error) {
         alert('다시 시도해 주세요.');
       }
       onHide();
     },
-    [navigate, onHide],
+    [mutateCreatePost, navigate, onHide],
   );
 
   return (

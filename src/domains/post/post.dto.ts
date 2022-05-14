@@ -13,8 +13,10 @@ type PostResponseDTO = {
   recruiting: boolean;
 };
 
-export type GetPostsResponse = Array<PostResponseDTO>;
+export type GetPostListResponse = Array<PostResponseDTO>;
 
 export type GetPostResponse = PostResponseDTO;
+
+export type CreatePostResponse = CommonDTO.ResponseDTO;
 
 export type DeletePostResponse = CommonDTO.ResponseDTO;
