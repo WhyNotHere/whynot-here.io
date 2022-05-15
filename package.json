@@ -11,7 +11,9 @@
     "start:build": "webpack --config webpack.prod.js --node-env production && cd build && npx serve ",
     "build": "webpack --config webpack.prod.js --node-env production",
     "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
-    "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,md}\""
+    "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,md}\"",
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json}": [
@@ -29,6 +31,7 @@
     "@types/react-dom": "^17.0.11",
     "axios": "^0.26.0",
     "emotion-normalize": "^11.0.1",
+    "gh-pages": "^4.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.30.0",
