@@ -113,7 +113,7 @@ const WritingModal = (props: WritingModalProps) => {
         <Styled.Divider />
         <Styled.TextArea
           {...register('content')}
-          placeholder="게시글의 목적에 맞지 않는 글로 판단되는 경우 글이 숨김 처리될 수 있습니다."
+          placeholder="연락처나 오픈 채팅방 주소를 알려주세요."
         />
       </Styled.ContentContainer>
       <Styled.Footer>
