@@ -54,6 +54,7 @@ export const PostContentContainer = styled.div`
 `;
 
 export const IconInfoContainer = styled.div`
+  cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.25rem;

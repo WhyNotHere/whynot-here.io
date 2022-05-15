@@ -16,12 +16,12 @@ import Button from '../../Button';
 import { parseDate } from '../../utils/parseDate';
 import { RoutePath } from '../../../RoutePath';
 
-type DetailPageProps = {
-  setRevisionModalVisible: (isRevisionModalVisible: boolean) => void;
-};
+// type DetailPageProps = {
+//   setRevisionModalVisible: (isRevisionModalVisible: boolean) => void;
+// };
 
-const DetailPage = (props: DetailPageProps) => {
-  const { setRevisionModalVisible } = props;
+const DetailPage = () => {
+  // const { setRevisionModalVisible } = props;
   const { id: postId } = useParams();
   const { isEditable } = usePost();
   const navigate = useNavigate();
@@ -69,12 +69,12 @@ const DetailPage = (props: DetailPageProps) => {
               </Styled.PostHeaderLeftContainer>
               {isEditable && (
                 <Styled.PostHeaderRightContainer>
-                  <Styled.PostContentButton
+                  {/* <Styled.PostContentButton
                     $type="text"
                     onClick={() => setRevisionModalVisible(true)}
                   >
                     수정
-                  </Styled.PostContentButton>
+                  </Styled.PostContentButton> */}
                   <Styled.PostContentButton $type="text" onClick={handlePostDelete}>
                     삭제
                   </Styled.PostContentButton>
@@ -109,11 +109,11 @@ const DetailPage = (props: DetailPageProps) => {
             <Styled.Contents>{post.content}</Styled.Contents>
             <Styled.Image src={post.postImg} alt="포스트 이미지" />
             <Styled.PostContentLeftContainer>
-              <Styled.IconInfoContainer>
+              <Styled.IconInfoContainer onClick={() => alert('아직 준비 중입니다.')}>
                 <Styled.LikeIcon />
                 <Styled.Like>{'좋아요'}</Styled.Like>
               </Styled.IconInfoContainer>
-              <Styled.IconInfoContainer>
+              <Styled.IconInfoContainer onClick={() => alert('아직 준비 중입니다.')}>
                 <Styled.PostContentCommentIcon />
                 <Styled.PostContentComment>{0}</Styled.PostContentComment>
               </Styled.IconInfoContainer>
