@@ -11,7 +11,7 @@ import { RoutePath } from '../../../RoutePath';
 
 const CheckEmailPage = () => {
   const navigate = useNavigate();
-  const { mutateAsync: mutateCheckEmail, isLoading, isError } = useCheckEmail();
+  const { mutateAsync: mutateCheckEmail, isLoading } = useCheckEmail();
   const {
     register,
     handleSubmit,
@@ -41,8 +41,6 @@ const CheckEmailPage = () => {
       <Styled.SubContainerForm onSubmit={handleSubmit(onSubmit)}>
         {isLoading ? (
           <div>Loading...</div>
-        ) : isError ? (
-          <div>Error</div>
         ) : (
           <>
             <Styled.Title>이메일 중복 확인</Styled.Title>
