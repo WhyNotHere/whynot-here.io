@@ -123,7 +123,7 @@ const DetailPage = (props: DetailPageProps) => {
           <Styled.DivisionLine />
 
           <Styled.ButtonContainer>
-            <Button onClick={() => console.log('apply')}>지원하기</Button>
+            <Button onClick={() => alert('아직 준비 중입니다.')}>지원하기</Button>
           </Styled.ButtonContainer>
         </Styled.SubContainer>
       )}

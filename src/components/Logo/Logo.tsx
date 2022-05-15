@@ -1,6 +1,7 @@
-import styled from '@emotion/styled';
-
 import { WhyNotHereHorizontalLogoImg } from '../../assets';
+import { RoutePath } from '../../RoutePath';
+
+import * as Styled from './Logo.styled';
 
 interface LogoProps {
   width?: string;
@@ -10,14 +11,10 @@ const Logo = (props: LogoProps) => {
   const { width = '12rem', ...rest } = props;
 
   return (
-    <Container width={width} {...rest}>
-      <img src={WhyNotHereHorizontalLogoImg} alt="로고 이미지" width="100%" />
-    </Container>
+    <Styled.Link to={RoutePath.HOME} width={width} {...rest}>
+      <img src={WhyNotHereHorizontalLogoImg} alt="로고" width="100%" />
+    </Styled.Link>
   );
 };
-
-const Container = styled.div<{ width: string }>`
-  width: ${({ width }) => width};
-`;
 
 export default Logo;
