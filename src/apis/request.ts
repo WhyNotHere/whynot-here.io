@@ -30,7 +30,7 @@ export const postCheckingNicknameAsync = async (nickname: string) => {
 };
 
 export const getCheckingAuthenticationCodeAsync = async (token: string, email: string) => {
-  const { data } = await axiosInstance.post(`/v1/check-email-token?token=${token}&email=${email}`);
+  const { data } = await axiosInstance.post('/v1/check-email-token', { token, email });
 
   return data;
 };
