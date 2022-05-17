@@ -8,10 +8,8 @@ import { useDeletePost, useGetPost } from '../../../domains/post/post.api';
 
 import * as Styled from './DetailPage.styled';
 
-// import CircleTag from '../../CircleTag';
 import Button from '../../Button';
-// import type { Job } from '../../../domains/job/job.type';
-// import * as JobMapper from '../../../domains/job/job.mapper';
+import Tag from '../../Tag';
 
 import { parseDate } from '../../utils/parseDate';
 import { RoutePath } from '../../../RoutePath';
@@ -89,17 +87,9 @@ const DetailPage = () => {
             <Styled.RecruitmentTitle>모집</Styled.RecruitmentTitle>
 
             <Styled.JobContainer>
-              {/* {post.jobs.map((job: Job) => {
-            const jobWithColor = JobMapper.job2JobWithColor(job);
-
-            return (
-              <CircleTag
-                key={jobWithColor.id}
-                circleColor={jobWithColor.color}
-                text={jobWithColor.name}
-              />
-            );
-          })} */}
+              {post.jobs.map((job, index) => (
+                <Tag key={index} type={job} />
+              ))}
             </Styled.JobContainer>
           </Styled.RecruitmentContainer>
 

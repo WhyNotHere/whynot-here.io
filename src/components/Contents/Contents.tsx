@@ -8,10 +8,7 @@ import { useGetPostList } from '../../domains/post/post.api';
 import * as Utils from './Contents.utils';
 import * as Styled from './Contents.styled';
 
-// TODO: DTO 분리
-// import CircleTag from '../CircleTag';
-// import * as JobMapper from '../../domains/job/job.mapper';
-// import * as DTO from '../../domains/job/job.dto';
+import Tag from '../Tag';
 
 import type { SearchFilter } from '../Filter/Filter.type';
 
@@ -58,19 +55,11 @@ const Contents = (props: ContentsProps) => {
       {filteredPosts &&
         filteredPosts.map((post) => (
           <Styled.InfoCard key={post.id} onClick={() => handlePostClick(post.id)}>
-            {/* <Styled.Job>
-          {post.jobs.map((job: DTO.Job) => {
-            const jobWithColor = JobMapper.job2JobWithColor(job);
-
-            return (
-              <CircleTag
-                key={jobWithColor.id}
-                circleColor={jobWithColor.color}
-                text={jobWithColor.name}
-              />
-            );
-          })}
-        </Styled.Job> */}
+            <Styled.Job>
+              {post.jobs.map((job, index) => (
+                <Tag key={index} type={job} />
+              ))}
+            </Styled.Job>
 
             <Styled.TitleContentImageContainer>
               <Styled.TitleContentContainer>
