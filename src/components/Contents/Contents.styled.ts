@@ -1,10 +1,17 @@
 import { LikeOutlined, MessageOutlined } from '@ant-design/icons';
 import styled from '@emotion/styled';
 
+import { DEVICE } from '../../responsive';
+
 // TODO: 여기를 BaseLayout으로 할지 고민
 export const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+
+  @media ${DEVICE.MOBILE} {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
 `;
 
 export const InfoCard = styled.div`

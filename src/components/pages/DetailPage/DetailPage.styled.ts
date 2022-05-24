@@ -2,18 +2,19 @@ import styled from '@emotion/styled';
 import { ClockCircleOutlined, LikeOutlined, MessageOutlined } from '@ant-design/icons';
 
 import BaseButton from '../../Button';
+import { DEVICE } from './../../../responsive';
 
 export const Container = styled.div`
   display: flex;
   justify-content: center;
-  padding: 0 4rem;
+  padding: 0 1.25rem;
 `;
 
 // TODO: 네이밍 고민
 export const SubContainer = styled.div`
-  width: 100%;
-  // TODO: max-width를 여기서 말고 전체적으로 제어할 수 있으면 더 좋을듯
-  max-width: 46rem;
+  @media ${DEVICE.MOBILE} {
+    width: 100%;
+  }
 `;
 
 export const PostHeaderContainer = styled.div`

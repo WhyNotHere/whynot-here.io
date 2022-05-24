@@ -2,7 +2,6 @@ import styled from '@emotion/styled';
 
 export const Container = styled.div`
   min-height: 100%;
-  min-width: 30rem;
 `;
 
 export const SubContainer = styled.div`
